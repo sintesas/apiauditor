@@ -10,5 +10,9 @@ class Personal extends Model
 {
     use HasFactory;
 
-    public $timestamps = false;
+    protected $table = 'AU_Reg_Personal';
+
+    protected $primaryKey = 'IdPersonal';
+
+	public $timestamps = false;
 }

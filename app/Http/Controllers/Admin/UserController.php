@@ -20,6 +20,44 @@ class UserController extends Controller
         return response()->json($response, 200);
     }
 
+    public function crearUsuario(Request $request) {
+        $model = new Users;
+
+        try {
+            $db = $model->crud_usuarios($request, 'C');
+
+            if ($db->id != 0) {
+                $id = $db->id;
+
+                $response = json_encode(array('mensaje' => 'Fue creado exitosamente.', 'tipo' => 0, 'id' => $id), JSON_NUMERIC_CHECK);
+                $response = json_decode($response);
+
+                return response()->json($response, 200);
+            }
+        }
+        catch (Exception $e) {
+            return response()->json(array('tipo' => -1, 'mensaje' => $e));
+        }
+    }
+
+    public function actualizarUsuario(Request $request) {
+        $model = new Users;
+
+        try {
+            $db = $model->crud_usuarios($request, 'U');
+
+            if ($db) {
+                $response = json_encode(array('mensaje' => 'Fue actualizado exitosamente.', 'tipo' => 0), JSON_NUMERIC_CHECK);
+                $response = json_decode($response);
+
+                return response()->json($response, 200);
+            }
+        }
+        catch (Exception $e) {
+            return response()->json(array('tipo' => -1, 'mensaje' => $e));
+        }
+    }
+
     public function getUsuariosRolesById(Request $request) {
         $model = new UsuarioRol;
 

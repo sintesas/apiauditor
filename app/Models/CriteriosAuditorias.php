@@ -6,13 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
-class ProcesoAuditoria extends Model
+class CriteriosAuditorias extends Model
 {
     use HasFactory;
 
-    protected $table = 'AU_Reg_ProcesosAuditorias';
+    protected $table = 'AU_Reg_CriteriosAuditorias';
 
-    protected $primaryKey = 'IdProceso';
+    protected $primaryKey = 'IdCriterio';
 
     public $timestamps = false;
 }

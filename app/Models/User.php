@@ -48,4 +48,29 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function crud_usuarios(Request $request, $evento) {
+        if ($evento == 'C') {
+            $m = new Users;
+            $m->IdPersonal = null;
+            $m->name = $request->get('IdPersonal');
+            $m->email = $request->get('email');
+            $m->password = bcrypt($request->get('password'));
+            $m->created_at = \DB::raw('GETDATE()');
+            $m->save();
+
+            return $m;
+        }
+        else if ($evento == 'U') {
+            $m = Users::find($request->get('id'));
+            $m->IdPersonal = null;
+            $m->name = $request->get('IdPersonal');
+            $m->email = $request->get('email');
+            $m->password = bcrypt($request->get('password'));
+            $m->updated_at = \DB::raw('GETDATE()');
+            $m->save();
+
+            return $m;
+        }
+    }
 }

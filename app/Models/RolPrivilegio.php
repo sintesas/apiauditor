@@ -15,7 +15,7 @@ class RolPrivilegio extends Model
     protected $primaryKey = 'rol_privilegio_id';
 
     protected $fillable = [
-        'rol_privilegio_id,rol_id,num_pantalla,nombre_pantalla,consultar,crear,actualizar,eliminar,activo,usuario_creador,fecha_creacion,usuario_modificador,fecha_modificacion'
+        'rol_privilegio_id,rol_id,num_pantalla,modulo,nombre_pantalla,consultar,crear,actualizar,eliminar,activo,usuario_creador,fecha_creacion,usuario_modificador,fecha_modificacion'
     ];
 
     public $timestamps = false;
@@ -25,6 +25,7 @@ class RolPrivilegio extends Model
             $m = new RolPrivilegio;
             $m->rol_id = $request->get('rol_id');
             $m->num_pantalla = $request->get('num_pantalla');
+            $m->modulo = $request->get('modulo');
             $m->nombre_pantalla = $request->get('nombre_pantalla');
             $m->consultar = $request->get('consultar') == true ? 1 : 0;
             $m->crear = $request->get('crear') == true ? 1 : 0;

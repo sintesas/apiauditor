@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\RolController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Param\CriterioController;
+use App\Http\Controllers\Param\ProcesoController;
+use App\Http\Controllers\Param\TipoAuditoriaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +30,8 @@ Route::any('logout', [LoginController::class, 'logout']);
 
 Route::group(['prefix' => 'admin'], function() {
     Route::get('usuarios', [UserController::class, 'getUsers']);
+    Route::post('usuario/crearUsuario', [UserController::class, 'crearUsuario']);
+    Route::post('usuario/actualizarUsuario', [UserController::class, 'actualizarUsuario']);
     Route::post('usuario/crearUsuarioRol', [UserController::class, 'crearUsuarioRol']);
     Route::post('usuario/actualizarUsuarioRol', [UserController::class, 'actualizarUsuarioRol']);
     Route::post('usuario/getUsuariosRolesById', [UserController::class, 'getUsuariosRolesById']);
@@ -43,4 +48,10 @@ Route::group(['prefix' => 'admin'], function() {
     Route::post('rol/actualizarRolPrivilegios', [RolController::class, 'actualizarRolPrivilegios']);
     Route::post('rol/getRolPrivilegiosById', [RolController::class, 'getRolPrivilegiosById']);
     Route::post('rol/eliminarRolPrivilegiosById', [RolController::class, 'eliminarRolPrivilegiosById']);
+});
+
+Route::group(['prefix' => 'param'], function() {
+    Route::get('criterios', [CriterioController::class, 'getCriterios']);
+    Route::get('procesos', [ProcesoController::class, 'getProcesos']);
+    Route::get('tipoauditoria', [TipoAuditoriaController::class, 'getTipoAuditorias']);
 });
