@@ -8,7 +8,6 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Param\CriterioController;
 use App\Http\Controllers\Param\ListaController;
-use App\Http\Controllers\Param\ListasController;
 use App\Http\Controllers\Param\ProcesoController;
 use App\Http\Controllers\Param\TipoAuditoriaController;
 use App\Http\Controllers\Unidad\UnidadController;
@@ -59,12 +58,12 @@ Route::group(['prefix' => 'param'], function() {
     Route::get('procesos', [ProcesoController::class, 'getProcesos']);
     Route::get('tipoauditoria', [TipoAuditoriaController::class, 'getTipoAuditorias']);
 
-    Route::get('listasdinamicas', [ListasController::class,'GetListas']);
-    Route::post('ld/crearLD', [ListasController::class, 'crearLista']);
-    Route::post('ld/actualizarLD', [ListasController::class, 'actualizarLista']);
-    Route::post('ld/getListasById', [ListaController::class, 'getListasId']);
-    Route::post('ld/crearLDh', [ListaController::class, 'crearLista']);
-    Route::post('ld/actualizarLDh', [ListaController::class, 'actualizarLista']);
+    Route::get('listas', [ListaController::class,'getListas']);
+    Route::post('lista/crearLista', [ListaController::class, 'crearLista']);
+    Route::post('lista/actualizarLista', [ListaController::class, 'actualizarLista']);
+    Route::post('lista/getListasById', [ListaController::class, 'getListasId']);
+    Route::post('lista/crearListaDetalle', [ListaController::class, 'crearListaDetalle']);
+    Route::post('lista/actualizarListaDetalle', [ListaController::class, 'actualizarListaDetalle']);
 });
 
 Route::group(['prefix' => 'unidad'], function() {

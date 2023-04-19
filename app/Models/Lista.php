@@ -10,24 +10,16 @@ class Lista extends Model
 {
     use HasFactory;
 
-    protected $table = 'sg_adm_listas_dinamicas';
+    protected $table = 'sg_adm_nombres_listas';
 
-    protected $primaryKey = 'lista_dinamica_id';
+    protected $primaryKey = 'nombre_lista_id';
 
     public $timestamps = false;
-
-    public function get_lista_by_id(Request $request) {
-        $db = \DB::select('select * from sg_adm_listas_dinamicas where nombre_lista_id = :id order by lista_dinamica_id', array('id' => $request->get('id')));
-        
-        return $db;
-    }
 
     public function crud_listas(Request $request, $evento) {
         if ($evento == 'C') {
             $Listas = new Lista;
-            $Listas->nombre_lista_id = $request->get('nombre_lista_id');
-            $Listas->lista_dinamica = $request->get('lista_dinamica');
-            $Listas->lista_padre_id = '';
+            $Listas->nombre_lista = $request->get('nombre_lista');
             $Listas->activo = 1;
             $Listas->usuario_creador = $request->get('usuario');
             $Listas->fecha_creacion = \DB::raw('GETDATE()');
@@ -36,11 +28,9 @@ class Lista extends Model
             return $Listas;
         }
         else if ($evento == 'U') {
-            $Listas = Lista::find($request->get('lista_dinamica_id'));
-            $Listas->nombre_lista_id = $request->get('nombre_lista_id');
-            $Listas->lista_dinamica = $request->get('lista_dinamica');
-            $Listas->lista_padre_id = '';
-            $Listas->activo = $request->get('activo');
+            $Listas = Lista::find($request->get('nombre_lista_id'));
+            $Listas->nombre_lista = $request->get('nombre_lista');
+            $Listas->activo = $request->get('activo') == true ? 1 : 0;
             $Listas->usuario_modificador = $request->get('usuario');
             $Listas->fecha_modificacion = \DB::raw('GETDATE()');
             $Listas->save(); 
