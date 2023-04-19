@@ -7,6 +7,8 @@ use App\Http\Controllers\Admin\RolController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Param\CriterioController;
+use App\Http\Controllers\Param\ListaController;
+use App\Http\Controllers\Param\ListasController;
 use App\Http\Controllers\Param\ProcesoController;
 use App\Http\Controllers\Param\TipoAuditoriaController;
 use App\Http\Controllers\Unidad\UnidadController;
@@ -56,6 +58,13 @@ Route::group(['prefix' => 'param'], function() {
     Route::get('criterios', [CriterioController::class, 'getCriterios']);
     Route::get('procesos', [ProcesoController::class, 'getProcesos']);
     Route::get('tipoauditoria', [TipoAuditoriaController::class, 'getTipoAuditorias']);
+
+    Route::get('listasdinamicas', [ListasController::class,'GetListas']);
+    Route::post('ld/crearLD', [ListasController::class, 'crearLista']);
+    Route::post('ld/actualizarLD', [ListasController::class, 'actualizarLista']);
+    Route::post('ld/getListasById', [ListaController::class, 'getListasId']);
+    Route::post('ld/crearLDh', [ListaController::class, 'crearLista']);
+    Route::post('ld/actualizarLDh', [ListaController::class, 'actualizarLista']);
 });
 
 Route::group(['prefix' => 'unidad'], function() {
