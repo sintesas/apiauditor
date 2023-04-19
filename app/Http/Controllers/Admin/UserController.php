@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\UsuarioMenu;
 use App\Models\UsuarioRol;
+use App\Models\Personal;
 
 class UserController extends Controller
 {
@@ -146,5 +147,14 @@ class UserController extends Controller
         catch (Exception $e) {
             return response()->json(array('tipo' => -1, 'mensaje' => $e));
         }
+    }
+
+    public function getPersonalesActivos() {
+        $datos = Personal::all();
+
+        $response = json_encode(array('result' => $datos, 'tipo' => 0), JSON_NUMERIC_CHECK);
+        $response = json_decode($response);
+
+        return response()->json($response, 200);
     }
 }

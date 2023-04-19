@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Param\CriterioController;
 use App\Http\Controllers\Param\ProcesoController;
 use App\Http\Controllers\Param\TipoAuditoriaController;
+use App\Http\Controllers\Unidad\UnidadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,7 @@ Route::group(['prefix' => 'admin'], function() {
     Route::post('usuario/eliminarUsuariosRolesId', [UserController::class, 'eliminarUsuariosRolesId']);
     Route::post('usuario/asignarMenu', [UserController::class, 'crearAsignarMenu']);
     Route::get('usuario/getRolPrivilegiosPantalla', [UserController::class, 'getRolPrivilegiosPantalla']);
+    Route::get('usuario/personales_activos', [UserController::class, 'getPersonalesActivos']);
 
     Route::get('roles', [RolController::class, 'getRoles']);
     Route::post('rol/crearRol', [RolController::class, 'crearRol']);
@@ -54,4 +56,8 @@ Route::group(['prefix' => 'param'], function() {
     Route::get('criterios', [CriterioController::class, 'getCriterios']);
     Route::get('procesos', [ProcesoController::class, 'getProcesos']);
     Route::get('tipoauditoria', [TipoAuditoriaController::class, 'getTipoAuditorias']);
+});
+
+Route::group(['prefix' => 'unidad'], function() {
+    Route::get('empresas_activos', [UnidadController::class, 'getEmpresasActivos']);
 });

@@ -52,8 +52,9 @@ class User extends Authenticatable
     public function crud_usuarios(Request $request, $evento) {
         if ($evento == 'C') {
             $m = new Users;
-            $m->IdPersonal = null;
-            $m->name = $request->get('IdPersonal');
+            $m->name = $request->get('name');
+            $m->IdPersonal = $request->get('IdPersonal');
+            $m->IdEmpresa = $request->get('IdEmpresa');
             $m->email = $request->get('email');
             $m->password = bcrypt($request->get('password'));
             $m->created_at = \DB::raw('GETDATE()');
@@ -63,8 +64,9 @@ class User extends Authenticatable
         }
         else if ($evento == 'U') {
             $m = Users::find($request->get('id'));
-            $m->IdPersonal = null;
-            $m->name = $request->get('IdPersonal');
+            $m->name = $request->get('name');
+            $m->IdPersonal = $request->get('IdPersonal');
+            $m->IdEmpresa = $request->get('IdEmpresa');
             $m->email = $request->get('email');
             $m->password = bcrypt($request->get('password'));
             $m->updated_at = \DB::raw('GETDATE()');
