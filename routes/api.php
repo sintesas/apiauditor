@@ -31,6 +31,7 @@ Route::post('login', [LoginController::class, 'login']);
 Route::any('logout', [LoginController::class, 'logout']);
 
 Route::group(['prefix' => 'admin'], function() {
+    Route::get('personas', [UserController::class, 'getPersonas']);
     Route::get('usuarios', [UserController::class, 'getUsers']);
     Route::post('usuario/crearUsuario', [UserController::class, 'crearUsuario']);
     Route::post('usuario/actualizarUsuario', [UserController::class, 'actualizarUsuario']);

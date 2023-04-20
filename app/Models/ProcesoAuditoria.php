@@ -15,4 +15,16 @@ class ProcesoAuditoria extends Model
     protected $primaryKey = 'IdProceso';
 
     public $timestamps = false;
+
+    public function getProcesosGroupBy() {
+        return ProcesoAuditorias::select('IdProceso','Proceso')
+        ->get()
+        ->keyBy('Proceso');
+    }
+
+    public function getSubProcesosGroupBy(Request $request) {
+        return ProcesoAuditorias::select('IdProceso','SubProceso')
+        ->where('Proceso','like',$request->get('texto'))
+        ->get();
+    }
 }

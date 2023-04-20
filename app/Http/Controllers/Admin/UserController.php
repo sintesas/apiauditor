@@ -9,9 +9,29 @@ use App\Models\User;
 use App\Models\UsuarioMenu;
 use App\Models\UsuarioRol;
 use App\Models\Personal;
+use App\Models\TipoDocumento;
 
 class UserController extends Controller
 {
+    public function getPersonas() {
+        $p = new Personal;
+        $datos = $p->getPersonas();
+
+        $response = json_encode(array('result' => $datos, 'tipo' => 0), JSON_NUMERIC_CHECK);
+        $response = json_decode($response);
+
+        return response()->json($response, 200);
+    }
+
+    public function getTipoDocumentos() {
+        $datos = TipoDocumento::all();
+
+        $response = json_encode(array('result' => $datos, 'tipo' => 0), JSON_NUMERIC_CHECK);
+        $response = json_decode($response);
+
+        return response()->json($response, 200);
+    }
+
     public function getUsers() {
         $datos = \DB::select("select * from users order by name");
 
@@ -76,8 +96,8 @@ class UserController extends Controller
         try {
             $db = $model->crud_usuarios_roles($request, 'C');
 
-            if ($db->id != 0) {
-                $id = $db->id;
+            if ($db->usuario_rol_id != 0) {
+                $id = $db->usuario_rol_id;
 
                 $response = json_encode(array('mensaje' => 'Fue creado exitosamente.', 'tipo' => 0, 'id' => $id), JSON_NUMERIC_CHECK);
                 $response = json_decode($response);

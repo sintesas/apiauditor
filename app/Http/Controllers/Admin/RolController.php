@@ -89,8 +89,8 @@ class RolController extends Controller
 
         $db = $model->crud_roles_privilegios($request, 'C');
 
-        if ($db->id != 0) {
-            $id = $db->id;
+        if ($db->rol_privilegio_id != 0) {
+            $id = $db->rol_privilegio_id;
 
             $response = json_encode(array('mensaje' => 'Fue creado exitosamente.', 'tipo' => 0, 'id' => $id), JSON_NUMERIC_CHECK);
             $response = json_decode($response);

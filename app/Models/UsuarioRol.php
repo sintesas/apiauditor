@@ -20,8 +20,8 @@ class UsuarioRol extends Model
 
     public $timestamps = false;
 
-    public function getUsuarioRolById($id) {
-        $db = \DB::select('select * from vw_sg_adm_usuarios_roles_privilegios where user_id = :id order by 1', array('id' => $id));
+    public function getUsuarioRolById(Request $request) {
+        $db = \DB::select('exec pr_get_sg_adm_usuarios_roles_by_user_id ?', [ $request->get('user_id') ]);
 
         return $db;
     }
