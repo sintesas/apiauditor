@@ -32,7 +32,26 @@ Route::any('logout', [LoginController::class, 'logout']);
 
 Route::group(['prefix' => 'admin'], function() {
     Route::get('personas', [UserController::class, 'getPersonas']);
+    Route::get('personasActivos', [UserController::class, 'getPersonasActivos']);
+    Route::get('tipodocumentos', [UserController::class, 'getTipoDocumento']);
+    Route::get('areas', [UserController::class, 'getAreasExperiencia']);
+    Route::get('carreraspro', [UserController::class, 'getCarrerasProfesiones']);
+    Route::get('cargos', [UserController::class, 'getCargos']);
+    Route::get('cuerpos', [UserController::class, 'getCuerpos']);
+    Route::get('empresas', [UserController::class, 'getEmpresas']);
+    Route::get('escuadrones', [UserController::class, 'getEscuadrones']);
+    Route::get('especialidadcert', [UserController::class, 'getEspecialidadCertificacion']);
+    Route::get('especialidades', [UserController::class, 'getEspecialidades']);
+    Route::get('fuerzas', [UserController::class, 'getFuerzas']);
+    Route::get('grados', [UserController::class, 'getGrados']);
+    Route::get('grupos', [UserController::class, 'getGrupos']);
+    Route::get('nivelcomp', [UserController::class, 'getNivelCompetencia']);
+    Route::get('procesos', [UserController::class, 'getProcesos']);
+    Route::get('talleres', [UserController::class, 'getTalleres']);
+    Route::get('unidades', [UserController::class, 'getUnidades']);
     Route::get('usuarios', [UserController::class, 'getUsers']);
+    Route::post('usuario/crearPersonal', [UserController::class, 'crearPersonal']);
+    Route::post('usuario/actualizarPersonal', [UserController::class, 'actualizarPersonal']);
     Route::post('usuario/crearUsuario', [UserController::class, 'crearUsuario']);
     Route::post('usuario/actualizarUsuario', [UserController::class, 'actualizarUsuario']);
     Route::post('usuario/crearUsuarioRol', [UserController::class, 'crearUsuarioRol']);
@@ -42,6 +61,7 @@ Route::group(['prefix' => 'admin'], function() {
     Route::post('usuario/asignarMenu', [UserController::class, 'crearAsignarMenu']);
     Route::get('usuario/getRolPrivilegiosPantalla', [UserController::class, 'getRolPrivilegiosPantalla']);
     Route::get('usuario/personales_activos', [UserController::class, 'getPersonalesActivos']);
+    Route::post('usuario/permisos', [UserController::class, 'getPermisos']);
 
     Route::get('roles', [RolController::class, 'getRoles']);
     Route::post('rol/crearRol', [RolController::class, 'crearRol']);

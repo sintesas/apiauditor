@@ -108,7 +108,7 @@ class RolController extends Controller
     public function actualizarRolPrivilegios(Request $request) {
         $model = new RolPrivilegio;
 
-        $db = $model->crud_roles_privilegios($request, 'C');
+        $db = $model->crud_roles_privilegios($request, 'U');
 
         if ($db) {            
             $response = json_encode(array('mensaje' => 'Fue actualizado exitosamente.', 'tipo' => 0), JSON_NUMERIC_CHECK);

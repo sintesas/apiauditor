@@ -10,9 +10,9 @@ class CuerposFAC extends Model
 {
     use HasFactory;
 
-    protected $table = 'AU_Mst_TipoDocumento';
+    protected $table = 'AU_Mst_Cuerpo';
 
-    protected $primaryKey = 'IdTipoDoc';
+    protected $primaryKey = 'IdCuerpo';
 
 	public $timestamps = false;
 

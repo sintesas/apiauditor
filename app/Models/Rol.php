@@ -14,7 +14,7 @@ class Rol extends Model
 
     protected $primaryKey = 'id';
 
-    protected $fillable = [ 'name', 'guard_name' ];
+    protected $fillable = [ 'name', 'guard_name', 'activo' ];
 
     public $timestamps = false;
 
@@ -23,6 +23,7 @@ class Rol extends Model
             $rol = new Rol;
             $rol->name = $request->get('name');
             $rol->guard_name = 'web';
+            $rol->activo = 1;
             $rol->created_at = \DB::raw('GETDATE()');
             $rol->save();            
 
@@ -32,6 +33,7 @@ class Rol extends Model
             $rol = Rol::find($request->get('id'));
             $rol->name = $request->get('name');
             $rol->guard_name = 'web';
+            $rol->activo = $request->get('activo') == true ? 1 : 0;
             $rol->updated_at = \DB::raw('GETDATE()');
             $rol->save();
 

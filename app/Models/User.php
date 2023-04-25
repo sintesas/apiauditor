@@ -17,6 +17,8 @@ class User extends Authenticatable
 
     protected $primaryKey = 'id';
 
+    public $timestamps = false;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -50,25 +52,26 @@ class User extends Authenticatable
     ];
 
     public function crud_usuarios(Request $request, $evento) {
+        $options = [ 'cost' => 15 ];
         if ($evento == 'C') {
-            $m = new Users;
+            $m = new User;
             $m->name = $request->get('name');
-            $m->IdPersonal = $request->get('IdPersonal');
-            $m->IdEmpresa = $request->get('IdEmpresa');
+            $m->IdPersonal = $request->get('idpersonal');
+            $m->IdEmpresa = $request->get('idempresa');
             $m->email = $request->get('email');
-            $m->password = bcrypt($request->get('password'));
+            $m->password = password_hash($request->get('password'), PASSWORD_BCRYPT, $options);
             $m->created_at = \DB::raw('GETDATE()');
             $m->save();
 
             return $m;
         }
         else if ($evento == 'U') {
-            $m = Users::find($request->get('id'));
+            $m = User::find($request->get('id'));
             $m->name = $request->get('name');
-            $m->IdPersonal = $request->get('IdPersonal');
-            $m->IdEmpresa = $request->get('IdEmpresa');
+            $m->IdPersonal = $request->get('idpersonal');
+            $m->IdEmpresa = $request->get('idempresa');
             $m->email = $request->get('email');
-            $m->password = bcrypt($request->get('password'));
+            $m->password = password_hash($request->get('password'), PASSWORD_BCRYPT, $options);
             $m->updated_at = \DB::raw('GETDATE()');
             $m->save();
 

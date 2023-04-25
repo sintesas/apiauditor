@@ -41,6 +41,7 @@ class UsuarioRol extends Model
         }
         else if ($evento == 'U') {
             $m = UsuarioRol::find($request->get('usuario_rol_id'));
+            $m->usuario_rol_id = $request->get('usuario_rol_id');
             $m->user_id = $request->get('user_id');
             $m->rol_id = $request->get('rol_id');
             $m->activo = $request->get('activo') == true ? 1 : 0;
