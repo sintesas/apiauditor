@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\RolController;
+use App\Http\Controllers\Admin\UnidadesController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Param\CriterioController;
@@ -72,6 +73,12 @@ Route::group(['prefix' => 'admin'], function() {
     Route::post('rol/actualizarRolPrivilegios', [RolController::class, 'actualizarRolPrivilegios']);
     Route::post('rol/getRolPrivilegiosById', [RolController::class, 'getRolPrivilegiosById']);
     Route::post('rol/eliminarRolPrivilegiosById', [RolController::class, 'eliminarRolPrivilegiosById']);
+
+    //unidades
+    Route::get('unidad', [UnidadesController::class, 'getUnidades']);
+    Route::post('unidad/crearunidad', [UnidadesController::class, 'CrearUnidades']);
+    Route::post('unidad/actualizarunidad', [UnidadesController::class, 'actualizarUnidad']);
+    Route::post('unidad/obtenerunidadesByid', [UnidadesController::class, 'get_unidad_by_id']);
 });
 
 Route::group(['prefix' => 'param'], function() {
@@ -87,6 +94,6 @@ Route::group(['prefix' => 'param'], function() {
     Route::post('lista/actualizarListaDetalle', [ListaController::class, 'actualizarListaDetalle']);
 });
 
-Route::group(['prefix' => 'unidad'], function() {
-    Route::get('empresas_activos', [UnidadController::class, 'getEmpresasActivos']);
-});
+// Route::group(['prefix' => 'unidad'], function() {
+//     Route::get('empresas_activos', [UnidadController::class, 'getEmpresasActivos']);
+// });
