@@ -100,69 +100,69 @@ class Personal extends Model
     public function crud_personales(Request $request, $evento) {
         if ($evento == 'C') {
             $persona = new Personal;
-            $persona->Categoria = $request->get('categoria');
+            // $persona->Categoria = $request->get('categoria');
             $persona->Nombres = $request->get('nombres');
             $persona->Apellidos = $request->get('apellidos');
             $persona->IdTipoDoc = $request->get('idtipodoc');
             $persona->Cedula = $request->get('cedula');
-            $persona->LugarExpedicion = $request->get('lugarexpedicion');
-            $persona->LugarNacim = $request->get('lugarnacim');
-            $persona->FechaNacim = $request->get('fechanacim');
-            $persona->Edad = $request->get('edad');
+            // $persona->LugarExpedicion = $request->get('lugarexpedicion');
+            // $persona->LugarNacim = $request->get('lugarnacim');
+            // $persona->FechaNacim = $request->get('fechanacim');
+            // $persona->Edad = $request->get('edad');
             $persona->Email = $request->get('email');
-            $persona->EmailPersonal = $request->get('emailpersonal');
-            $persona->IdProceso = $request->get('idproceso');
-            $persona->IdEmpresa = $request->get('idempresa');
-            $persona->DependeciaFacultad = $request->get('dependeciafacultad');
-            $persona->IdCarreraProfesion = $request->get('idcarreraprofesion');
-            $persona->Escolaridad = $request->get('escolaridad');
-            $persona->IdCargo = $request->get('idcargo');
-            $persona->IdNivelCompetencia = $request->get('idnivelcompetencia');
-            $persona->Experiencia = $request->get('experiencia');
-            $persona->Fechaingreso = $request->get('fechaingreso');
-            $persona->IdAreaExperiencia = $request->get('idareaexperiencia');
-            $persona->IdSupervisor = $request->get('idsupervisor');
-            $persona->Celular = $request->get('celular');
-            $persona->Fijo = $request->get('fijo');
-            $persona->Oficina = $request->get('oficina');
-            $persona->PaisResidencia = $request->get('paisresidencia');
-            $persona->FechaTermino = $request->get('fechatermino');
-            $persona->EstadoCivil = $request->get('estadocivil');
-            $persona->DireccionResi = $request->get('direccionresi');
-            $persona->Barrio = $request->get('barrio');
-            $persona->IdGrado = $request->get('idgrado');
-            $persona->CodMilitar = $request->get('codigomilitar');
-            $persona->NoFolioVida = $request->get('nfolio');
-            $persona->IdFuerza = $request->get('idfuerza');
-            $persona->IdCuerpo = $request->get('idcuerpo');
-            $persona->IdEspecialidad1 = $request->get('idespecialidad1');
-            $persona->IdEspecialidad2 = $request->get('idespecialidad2');
-            $persona->FechaIncorporacion = $request->get('fechaincorpacion');
-            $persona->FechaAsense = $request->get('fechasense');
-            $persona->IdUnidad = $request->get('idunidad');
-            $persona->IdGrupo = $request->get('idgrupo');
-            $persona->IdTaller = $request->get('idtaller');
-            $persona->IdEspecialidadCertificacion = $request->get('idespecialidadcertificacion');
-            $persona->IdEscuadron = $request->get('idescuadron');
+            // $persona->EmailPersonal = $request->get('emailpersonal');
+            // $persona->IdProceso = $request->get('idproceso');
+            // $persona->IdEmpresa = $request->get('idempresa');
+            // $persona->DependeciaFacultad = $request->get('dependeciafacultad');
+            // $persona->IdCarreraProfesion = $request->get('idcarreraprofesion');
+            // $persona->Escolaridad = $request->get('escolaridad');
+            // $persona->IdCargo = $request->get('idcargo');
+            // $persona->IdNivelCompetencia = $request->get('idnivelcompetencia');
+            // $persona->Experiencia = $request->get('experiencia');
+            // $persona->Fechaingreso = $request->get('fechaingreso');
+            // $persona->IdAreaExperiencia = $request->get('idareaexperiencia');
+            // $persona->IdSupervisor = $request->get('idsupervisor');
+            // $persona->Celular = $request->get('celular');
+            // $persona->Fijo = $request->get('fijo');
+            // $persona->Oficina = $request->get('oficina');
+            // $persona->PaisResidencia = $request->get('paisresidencia');
+            // $persona->FechaTermino = $request->get('fechatermino');
+            // $persona->EstadoCivil = $request->get('estadocivil');
+            // $persona->DireccionResi = $request->get('direccionresi');
+            // $persona->Barrio = $request->get('barrio');
+            // $persona->IdGrado = $request->get('idgrado');
+            // $persona->CodMilitar = $request->get('codigomilitar');
+            // $persona->NoFolioVida = $request->get('nfolio');
+            // $persona->IdFuerza = $request->get('idfuerza');
+            // $persona->IdCuerpo = $request->get('idcuerpo');
+            // $persona->IdEspecialidad1 = $request->get('idespecialidad1');
+            // $persona->IdEspecialidad2 = $request->get('idespecialidad2');
+            // $persona->FechaIncorporacion = $request->get('fechaincorpacion');
+            // $persona->FechaAsense = $request->get('fechasense');
+            // $persona->IdUnidad = $request->get('idunidad');
+            // $persona->IdGrupo = $request->get('idgrupo');
+            // $persona->IdTaller = $request->get('idtaller');
+            // $persona->IdEspecialidadCertificacion = $request->get('idespecialidadcertificacion');
+            // $persona->IdEscuadron = $request->get('idescuadron');
             $persona->Active = 1;
 
-            if ($request->get('foto')) {
-                $folderPath = public_path() . '/secad/Personal/Fotos';
-                if (!\File::exists($folderPath)) {
-                    \File::makeDirectory($folderPath, 0755, true);
-                }
+            // if ($request->get('foto')) {
+            //     $folderPath = public_path() . '/secad/Personal/Fotos';
+            //     if (!\File::exists($folderPath)) {
+            //         \File::makeDirectory($folderPath, 0755, true);
+            //     }
 
-                $foto = $folderPath . '/' . $persona->Cedula . $request->get('tipo_imagen');
+            //     $foto = $folderPath . '/' . $persona->Cedula . $request->get('tipo_imagen');
                 
-                if (file_exists($foto)) {
-                    \File::delete($foto);
-                }
+            //     if (file_exists($foto)) {
+            //         \File::delete($foto);
+            //     }
         
-                $image_base64 = base64_decode($request->get('foto'));
-                file_put_contents($foto, $image_base64);
+            //     $image_base64 = base64_decode($request->get('foto'));
+            //     file_put_contents($foto, $image_base64);
 
-                $persona->Foto = $persona->Cedula . $request->get('tipo_imagen');
-            }
+            //     $persona->Foto = $persona->Cedula . $request->get('tipo_imagen');
+            // }
 
             $persona->save();
 
@@ -170,70 +170,69 @@ class Personal extends Model
         }
         else if ($evento == 'U') {
             $persona = Personal::find($request->get('idpersonal'));
-            $persona->IdPersonal = $request->get('idpersonal');
-            $persona->Categoria = $request->get('categoria');
+            // $persona->Categoria = $request->get('categoria');
             $persona->Nombres = $request->get('nombres');
             $persona->Apellidos = $request->get('apellidos');
             $persona->IdTipoDoc = $request->get('idtipodoc');
             $persona->Cedula = $request->get('cedula');
-            $persona->LugarExpedicion = $request->get('lugarexpedicion');
-            $persona->LugarNacim = $request->get('lugarnacim');
-            $persona->FechaNacim = $request->get('fechanacim');
-            $persona->Edad = $request->get('edad');
+            // $persona->LugarExpedicion = $request->get('lugarexpedicion');
+            // $persona->LugarNacim = $request->get('lugarnacim');
+            // $persona->FechaNacim = $request->get('fechanacim');
+            // $persona->Edad = $request->get('edad');
             $persona->Email = $request->get('email');
-            $persona->EmailPersonal = $request->get('emailpersonal');
-            $persona->IdProceso = $request->get('idproceso');
-            $persona->IdEmpresa = $request->get('idempresa');
-            $persona->DependeciaFacultad = $request->get('dependeciafacultad');
-            $persona->IdCarreraProfesion = $request->get('idcarreraprofesion');
-            $persona->Escolaridad = $request->get('escolaridad');
-            $persona->IdCargo = $request->get('idcargo');
-            $persona->IdNivelCompetencia = $request->get('idnivelcompetencia');
-            $persona->Experiencia = $request->get('experiencia');
-            $persona->Fechaingreso = $request->get('fechaingreso');
-            $persona->IdAreaExperiencia = $request->get('idareaexperiencia');
-            $persona->IdSupervisor = $request->get('idsupervisor');
-            $persona->Celular = $request->get('celular');
-            $persona->Fijo = $request->get('fijo');
-            $persona->Oficina = $request->get('oficina');
-            $persona->PaisResidencia = $request->get('paisresidencia');
-            $persona->FechaTermino = $request->get('fechatermino');
-            $persona->EstadoCivil = $request->get('estadocivil');
-            $persona->DireccionResi = $request->get('direccionresi');
-            $persona->Barrio = $request->get('barrio');
-            $persona->IdGrado = $request->get('idgrado');
-            $persona->CodMilitar = $request->get('codigomilitar');
-            $persona->NoFolioVida = $request->get('nfolio');
-            $persona->IdFuerza = $request->get('idfuerza');
-            $persona->IdCuerpo = $request->get('idcuerpo');
-            $persona->IdEspecialidad1 = $request->get('idespecialidad1');
-            $persona->IdEspecialidad2 = $request->get('idespecialidad2');
-            $persona->FechaIncorporacion = $request->get('fechaincorpacion');
-            $persona->FechaAsense = $request->get('fechasense');
-            $persona->IdUnidad = $request->get('idunidad');
-            $persona->IdGrupo = $request->get('idgrupo');
-            $persona->IdTaller = $request->get('idtaller');
-            $persona->IdEspecialidadCertificacion = $request->get('idespecialidadcertificacion');
-            $persona->IdEscuadron = $request->get('idescuadron');
+            // $persona->EmailPersonal = $request->get('emailpersonal');
+            // $persona->IdProceso = $request->get('idproceso');
+            // $persona->IdEmpresa = $request->get('idempresa');
+            // $persona->DependeciaFacultad = $request->get('dependeciafacultad');
+            // $persona->IdCarreraProfesion = $request->get('idcarreraprofesion');
+            // $persona->Escolaridad = $request->get('escolaridad');
+            // $persona->IdCargo = $request->get('idcargo');
+            // $persona->IdNivelCompetencia = $request->get('idnivelcompetencia');
+            // $persona->Experiencia = $request->get('experiencia');
+            // $persona->Fechaingreso = $request->get('fechaingreso');
+            // $persona->IdAreaExperiencia = $request->get('idareaexperiencia');
+            // $persona->IdSupervisor = $request->get('idsupervisor');
+            // $persona->Celular = $request->get('celular');
+            // $persona->Fijo = $request->get('fijo');
+            // $persona->Oficina = $request->get('oficina');
+            // $persona->PaisResidencia = $request->get('paisresidencia');
+            // $persona->FechaTermino = $request->get('fechatermino');
+            // $persona->EstadoCivil = $request->get('estadocivil');
+            // $persona->DireccionResi = $request->get('direccionresi');
+            // $persona->Barrio = $request->get('barrio');
+            // $persona->IdGrado = $request->get('idgrado');
+            // $persona->CodMilitar = $request->get('codigomilitar');
+            // $persona->NoFolioVida = $request->get('nfolio');
+            // $persona->IdFuerza = $request->get('idfuerza');
+            // $persona->IdCuerpo = $request->get('idcuerpo');
+            // $persona->IdEspecialidad1 = $request->get('idespecialidad1');
+            // $persona->IdEspecialidad2 = $request->get('idespecialidad2');
+            // $persona->FechaIncorporacion = $request->get('fechaincorpacion');
+            // $persona->FechaAsense = $request->get('fechasense');
+            // $persona->IdUnidad = $request->get('idunidad');
+            // $persona->IdGrupo = $request->get('idgrupo');
+            // $persona->IdTaller = $request->get('idtaller');
+            // $persona->IdEspecialidadCertificacion = $request->get('idespecialidadcertificacion');
+            // $persona->IdEscuadron = $request->get('idescuadron');
             $persona->Active = 1;
 
-            if ($request->get('foto') != null) {
-                $folderPath = public_path() . '/secad/Personal/Fotos';
-                if (!\File::exists($folderPath)) {
-                    \File::makeDirectory($folderPath, 0755, true);
-                }
+            // if ($request->get('foto') != null) {
+            //     $folderPath = public_path() . '/secad/Personal/Fotos';
+            //     if (!\File::exists($folderPath)) {
+            //         \File::makeDirectory($folderPath, 0755, true);
+            //     }
 
-                $foto = $folderPath . '/' . $persona->Cedula . $request->get('tipo_imagen');
+            //     $foto = $folderPath . '/' . $persona->Cedula . $request->get('tipo_imagen');
                 
-                if (file_exists($foto)) {
-                    \File::delete($foto);
-                }
+            //     if (file_exists($foto)) {
+            //         \File::delete($foto);
+            //     }
         
-                $image_base64 = base64_decode($request->get('foto'));
-                file_put_contents($foto, $image_base64);
+            //     $image_base64 = base64_decode($request->get('foto'));
+            //     file_put_contents($foto, $image_base64);
 
-                $persona->Foto = $persona->Cedula . $request->get('tipo_imagen');
-            }
+            //     $persona->Foto = $persona->Cedula . $request->get('tipo_imagen');
+            // }
 
             $persona->save();
 

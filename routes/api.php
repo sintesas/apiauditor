@@ -5,12 +5,15 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\RolController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\UnidadController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Config\PerfilController;
 use App\Http\Controllers\Param\CriterioController;
 use App\Http\Controllers\Param\ListaController;
 use App\Http\Controllers\Param\ProcesoController;
 use App\Http\Controllers\Param\TipoAuditoriaController;
-use App\Http\Controllers\Unidad\UnidadController;
+
+use App\Http\Controllers\Mail\MailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,6 +75,12 @@ Route::group(['prefix' => 'admin'], function() {
     Route::post('rol/actualizarRolPrivilegios', [RolController::class, 'actualizarRolPrivilegios']);
     Route::post('rol/getRolPrivilegiosById', [RolController::class, 'getRolPrivilegiosById']);
     Route::post('rol/eliminarRolPrivilegiosById', [RolController::class, 'eliminarRolPrivilegiosById']);
+
+    //unidades
+    Route::get('unidades', [UnidadController::class, 'getUnidades']);
+    Route::post('unidad/crearUnidades', [UnidadController::class, 'crearUnidades']);
+    Route::post('unidad/actualizarUnidades', [UnidadController::class, 'actualizarUnidad']);
+    Route::post('unidad/obtenerUnidadesByid', [UnidadController::class, 'getUnidadesById']);
 });
 
 Route::group(['prefix' => 'param'], function() {
@@ -83,10 +92,15 @@ Route::group(['prefix' => 'param'], function() {
     Route::post('lista/crearLista', [ListaController::class, 'crearLista']);
     Route::post('lista/actualizarLista', [ListaController::class, 'actualizarLista']);
     Route::post('lista/getListasById', [ListaController::class, 'getListasId']);
+    Route::get('lista/getListaDetalleFull', [ListaController::class, 'getListaDetalleFull']);
     Route::post('lista/crearListaDetalle', [ListaController::class, 'crearListaDetalle']);
     Route::post('lista/actualizarListaDetalle', [ListaController::class, 'actualizarListaDetalle']);
 });
 
-Route::group(['prefix' => 'unidad'], function() {
-    Route::get('empresas_activos', [UnidadController::class, 'getEmpresasActivos']);
+Route::group(['prefix' => 'config'], function() {
+    Route::post('roles', [PerfilController::class, 'getRoles']);
+    Route::post('changePassword', [PerfilController::class, 'changePassword']);
+    Route::post('resetPassword', [PerfilController::class, 'resetPassword']);
 });
+
+Route::post('enviar', [MailController::class, 'index']);

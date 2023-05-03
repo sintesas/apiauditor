@@ -40,4 +40,10 @@ class Rol extends Model
             return $rol;
         }
     }
+
+    public function get_roles_by_user(Request $request) {
+        $db = \DB::select('select rol from vw_roles_users where user_id = :id', array('id' => $request->get('user_id')));
+
+        return $db;
+    }
 }
