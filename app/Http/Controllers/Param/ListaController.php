@@ -37,7 +37,7 @@ class ListaController extends Controller
     }
     
     public function actualizarLista(Request $request) {
-        $m = new Listas;
+        $m = new Lista;
         $lista = $m->crud_listas($request, 'U');
         if ($lista) {
             $response = json_encode(array('mensaje' => 'Ha actualizado exitosamente.', 'tipo' => 0), JSON_NUMERIC_CHECK);
