@@ -16,6 +16,12 @@ class ListaDetalle extends Model
 
     public $timestamps = false;
 
+    public function get_lista_detalle_full() {
+        $db = \DB::select('select t.* from vw_listas_dinamicas t order by t.lista_dinamica_id');
+        
+        return $db;
+    }
+
     public function get_lista_by_id(Request $request) {
         $db = \DB::select('select t.*, (select lista_dinamica from sg_adm_listas_dinamicas where lista_dinamica_id = t.lista_padre_id) as lista_padre from sg_adm_listas_dinamicas t where t.nombre_lista_id = :id order by t.lista_dinamica_id', array('id' => $request->get('nombre_lista_id')));
         
@@ -28,7 +34,7 @@ class ListaDetalle extends Model
             $Listas->nombre_lista_id = $request->get('nombre_lista_id');
             $Listas->lista_dinamica = $request->get('lista_dinamica');
             $Listas->codigo = $request->get('codigo');
-            $Listas->lista_padre_id = $request->get('lista_padre_id');
+            $Listas->lista_padre_id = $request->get('lista_padre_id') == 0 ? null : $request->get('lista_padre_id');
             $Listas->activo = 1;
             $Listas->usuario_creador = $request->get('usuario');
             $Listas->fecha_creacion = \DB::raw('GETDATE()');
@@ -49,5 +55,11 @@ class ListaDetalle extends Model
 
             return $Listas;
         }
+    }
+
+    public function getListasByNombre(Request $request) {
+        $db = \DB::select('select t.* from vw_listas_dinamicas t where t.nombre_lista = :lista', array('lista' => $request->get('nombre')));
+
+        return $db;
     }
 }

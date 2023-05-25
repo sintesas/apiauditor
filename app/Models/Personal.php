@@ -16,7 +16,7 @@ class Personal extends Model
     protected $primaryKey = 'IdPersonal';
 
     protected $fillable = [
-        'Categoria,Nombres,Apellidos,IdTipoDoc,Cedula,Lugarexpedicion,LugarNacim,FechaNacim,Edad,Email,EmailPersonal,Firma,IdEmpresa,DependeciaFacultad,IdCarreraProfesion,Escolaridad,IdCargo,Experiencia,IdNivelCompetencia,Fechaingreso,IdAreaExperiencia,IdSupervisor,FechaTermino,EstadoCivil,Celular,Fijo,Oficina,DireccionResi,Barrio,PaisResidencia,IdGrado,CodMilitar,NoFolioVida,IdFuerza,IdCuerpo,IdEspecialidad1,IdEspecialidad2,IdEspecialidadCertificacion,FechaIncorporacion,FechaAsense,IdUnidad,IdGrupo,IdTaller,IdEscuadron,Foto,Active,IdProceso'
+        'Categoria,Nombres,Apellidos,IdTipoDoc,Cedula,Lugarexpedicion,LugarNacim,FechaNacim,Edad,Email,EmailPersonal,Firma,IdEmpresa,DependeciaFacultad,IdCarreraProfesion,Escolaridad,IdCargo,Experiencia,IdNivelCompetencia,Fechaingreso,IdAreaExperiencia,IdSupervisor,FechaTermino,EstadoCivil,Celular,Fijo,Oficina,DireccionResi,Barrio,PaisResidencia,IdGrado,CodMilitar,NoFolioVida,IdFuerza,IdCuerpo,IdEspecialidad1,IdEspecialidad2,IdEspecialidadCertificacion,FechaIncorporacion,FechaAsense,IdUnidad,IdGrupo,IdTaller,IdEscuadron,Foto,Active,IdProceso,IdTipoIdent'
     ];
 
 	public $timestamps = false;
@@ -80,6 +80,7 @@ class Personal extends Model
             $tmp['Foto'] = $item->Foto;
             $tmp['Active'] = 1;
             $tmp['IdProceso'] = $item->IdProceso;
+            $tmp['IdTipoIdent'] = $item->IdTipoIdent;
             $tmp['id'] = $item->id;
             $tmp['name'] = $item->name;
             $tmp['email'] = $item->email;
@@ -103,7 +104,7 @@ class Personal extends Model
             // $persona->Categoria = $request->get('categoria');
             $persona->Nombres = $request->get('nombres');
             $persona->Apellidos = $request->get('apellidos');
-            $persona->IdTipoDoc = $request->get('idtipodoc');
+            // $persona->IdTipoDoc = $request->get('idtipodoc');
             $persona->Cedula = $request->get('cedula');
             // $persona->LugarExpedicion = $request->get('lugarexpedicion');
             // $persona->LugarNacim = $request->get('lugarnacim');
@@ -144,6 +145,7 @@ class Personal extends Model
             // $persona->IdTaller = $request->get('idtaller');
             // $persona->IdEspecialidadCertificacion = $request->get('idespecialidadcertificacion');
             // $persona->IdEscuadron = $request->get('idescuadron');
+            $persona->IdTipoIdent = $request->get('idtipoident');
             $persona->Active = 1;
 
             // if ($request->get('foto')) {
@@ -214,6 +216,7 @@ class Personal extends Model
             // $persona->IdTaller = $request->get('idtaller');
             // $persona->IdEspecialidadCertificacion = $request->get('idespecialidadcertificacion');
             // $persona->IdEscuadron = $request->get('idescuadron');
+            $persona->IdTipoIdent = $request->get('idtipoident');
             $persona->Active = 1;
 
             // if ($request->get('foto') != null) {

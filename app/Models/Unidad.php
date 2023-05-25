@@ -25,7 +25,7 @@ class Unidad extends Model
 	public $timestamps = false;
 
     public function GetUnidades() {
-        $db = \DB::select('select t.*, (select nombre_unidad from sg_adm_unidades where unidad_id = t.unidad_padre_id) as unidad_padre from sg_adm_unidades t order by t.unidad_id');
+        $db = \DB::select('select t.* from sg_adm_unidades t where unidad_padre_id is null order by t.unidad_id');
         
         return $db;
     }

@@ -23,7 +23,7 @@ class ListaController extends Controller
         $m = new Lista;
         $lista = $m->crud_listas($request, 'C');
         if ($lista->nombre_lista_id != 0) {
-            $response = json_encode(array('mensaje' => 'Ha creado exitosamente.', 'tipo' => 0, 'id' => $lista->id), JSON_NUMERIC_CHECK);
+            $response = json_encode(array('mensaje' => 'Ha creado exitosamente.', 'tipo' => 0, 'id' => $lista->nombre_lista_id), JSON_NUMERIC_CHECK);
             $response = json_decode($response);
 
             return response()->json($response);
@@ -65,7 +65,18 @@ class ListaController extends Controller
     }
 
     public function getListaDetalleFull() {
-        $datos = ListaDetalle::orderBy('lista_dinamica_id', 'asc')->get();
+        $m = new ListaDetalle;
+        $datos = $m->get_lista_detalle_full();
+
+        $response = json_encode(array('result' => $datos, 'tipo' => 0), JSON_NUMERIC_CHECK);
+        $response = json_decode($response);
+
+        return response()->json($response, 200);
+    }
+
+    public function getListasByNombre(Request $request) {
+        $m = new ListaDetalle;
+        $datos = $m->getListasByNombre($request);
 
         $response = json_encode(array('result' => $datos, 'tipo' => 0), JSON_NUMERIC_CHECK);
         $response = json_decode($response);
@@ -76,8 +87,9 @@ class ListaController extends Controller
     public function crearListaDetalle(Request $request) {
         $m = new ListaDetalle;
         $lista = $m->crud_listas_detalles($request, 'C');
+        
         if ($lista->lista_dinamica_id != 0) {
-            $response = json_encode(array('mensaje' => 'Ha creado exitosamente.', 'tipo' => 0, 'id' => $lista->id), JSON_NUMERIC_CHECK);
+            $response = json_encode(array('mensaje' => 'Ha creado exitosamente.', 'tipo' => 0, 'id' => $lista->lista_dinamica_id), JSON_NUMERIC_CHECK);
             $response = json_decode($response);
 
             return response()->json($response);
