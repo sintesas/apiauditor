@@ -53,6 +53,7 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('usuario/getRolPrivilegiosPantalla', [UserController::class, 'getRolPrivilegiosPantalla']);
     Route::get('usuario/personales_activos', [UserController::class, 'getPersonalesActivos']);
     Route::post('usuario/permisos', [UserController::class, 'getPermisos']);
+    Route::get('usuario/getUsersLDAP', [UserController::class, 'getUsersLDAP']);
 
     //roles
     Route::get('roles', [RolController::class, 'getRoles']);
@@ -86,9 +87,14 @@ Route::group(['prefix' => 'param'], function() {
 Route::group(['prefix' => 'inspec'], function() {
     // inspecciones
     Route::get('inspecciones', [InspeccionController::class, 'getInspecciones']);
+    Route::get('inspeccion/getUnidadDependencias', [InspeccionController::class, 'getUnidadDependencias']);
 
     // plan inspeccion
     Route::post('inspeccion/getPlanInspecciones', [InspeccionController::class, 'getPlanesInspecciones']);
     Route::get('inspeccion/getProcesosSubprocesos', [InspeccionController::class, 'getProcesosSubProcesos']);
     Route::post('inspeccion/getActividadesPlanInspeccion', [InspeccionController::class, 'getActividadesPlanInspeccion']);
+    Route::get('inspeccion/getCriterios', [InspeccionController::class, 'getCriterios']);
+    Route::get('inspeccion/getFuncionarios', [InspeccionController::class, 'getFuncionarios']);
+    Route::get('inspeccion/getResponsables', [InspeccionController::class, 'getResponsables']);
+    Route::get('inspeccion/getTipoInspeccion', [InspeccionController::class, 'getTipoInspeccion']);
 });

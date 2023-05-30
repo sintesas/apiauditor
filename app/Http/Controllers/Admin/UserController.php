@@ -25,11 +25,22 @@ use App\Models\ProcesoAuditoria;
 use App\Models\Permiso;
 use App\Models\Rol;
 use App\Models\User;
+use App\Models\UsersLDAP;
 use App\Models\UsuarioMenu;
 use App\Models\UsuarioRol;
 
 class UserController extends Controller
 {
+    public function getUsersLDAP() {
+        $m = new UsersLDAP;
+        $datos = $m->getUsersLDAP();
+
+        $response = json_encode(array('result' => $datos, 'tipo' => 0), JSON_NUMERIC_CHECK);
+        $response = json_decode($response);
+
+        return response()->json($response, 200);
+    }
+
     public function getPersonas() {
         $p = new Personal;
         $datos = $p->getPersonas();
