@@ -88,6 +88,20 @@ Route::group(['prefix' => 'inspec'], function() {
     // inspecciones
     Route::get('inspecciones', [InspeccionController::class, 'getInspecciones']);
     Route::get('inspeccion/getUnidadDependencias', [InspeccionController::class, 'getUnidadDependencias']);
+    Route::post('inspeccion/crearInspeccion', [InspeccionController::class, 'crearInspeccion']);
+    Route::post('inspeccion/actualizarInspeccion', [InspeccionController::class, 'actualizarInspeccion']);
+    Route::post('inspeccion/getInspeccionInspectores', [InspeccionController::class, 'getInspeccionInspectores']);
+    Route::post('inspeccion/crearInspeccionInspector', [InspeccionController::class, 'crearInspeccionInspector']);
+    Route::post('inspeccion/actualizarInspeccionInspector', [InspeccionController::class, 'actualizarInspeccionInspector']);
+    Route::post('inspeccion/getInspeccionObservadores', [InspeccionController::class, 'getInspeccionObservadores']);
+    Route::post('inspeccion/crearInspeccionObservador', [InspeccionController::class, 'crearInspeccionObservador']);
+    Route::post('inspeccion/actualizarInspeccionObservador', [InspeccionController::class, 'actualizarInspeccionObservador']);
+    Route::post('inspeccion/getInspeccionParticulares', [InspeccionController::class, 'getInspeccionParticulares']);
+    Route::post('inspeccion/crearInspeccionParticular', [InspeccionController::class, 'crearInspeccionParticular']);
+    Route::post('inspeccion/actualizarInspeccionParticular', [InspeccionController::class, 'actualizarInspeccionParticular']);
+    Route::post('inspeccion/getInspeccionTecnicos', [InspeccionController::class, 'getInspeccionTecnicos']);
+    Route::post('inspeccion/crearInspeccionTecnico', [InspeccionController::class, 'crearInspeccionTecnico']);
+    Route::post('inspeccion/actualizarInspeccionTecnico', [InspeccionController::class, 'actualizarInspeccionTecnico']);
 
     // plan inspeccion
     Route::post('inspeccion/getPlanInspecciones', [InspeccionController::class, 'getPlanesInspecciones']);
@@ -97,4 +111,6 @@ Route::group(['prefix' => 'inspec'], function() {
     Route::get('inspeccion/getFuncionarios', [InspeccionController::class, 'getFuncionarios']);
     Route::get('inspeccion/getResponsables', [InspeccionController::class, 'getResponsables']);
     Route::get('inspeccion/getTipoInspeccion', [InspeccionController::class, 'getTipoInspeccion']);
+    Route::post('inspeccion/crearPlanInspeccion', [InspeccionController::class, 'crearPlanInspeccion']);
+    Route::post('inspeccion/actualizarPlanInspeccion', [InspeccionController::class, 'actualizarPlanInspeccion']);
 });
