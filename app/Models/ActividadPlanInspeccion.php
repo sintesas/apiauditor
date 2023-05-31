@@ -21,6 +21,49 @@ class ActividadPlanInspeccion extends Model
 
         return $db;
     }
+
+    public function crud_actividades_plan_inspeccion(Request $request, $evento) {
+        if ($evento == 'C') {
+            $m = new ActividadPlanInspeccion;
+            $m->plan_inspeccion_id = $request->get('plan_inspeccion_id');
+            $m->criterio_id = $request->get('criterio_id');
+            $m->proceso_id = $request->get('proceso_id');
+            $m->lugar = $request->get('lugar');
+            $m->actividades = $request->get('actividad');
+            $m->inspeccionado_id = $request->get('inspeccionado_id');
+            $m->inspector_id = $request->get('inspector_id');
+            $m->fecha_inicio = $request->get('fecha_inicio');
+            $m->hora_inicio = $request->get('hora_inicio');
+            $m->fecha_cierre = $request->get('fecha_cierre');
+            $m->hora_final = $request->get('hora_final');
+            $m->activo = 1;
+            $m->usuario_creador = $request->get('usuario');
+            $m->fecha_creacion = \DB::raw("GETDATE()");
+            $m->save();
+
+            return $m;
+        }
+        else if ($evento == 'U') {
+            $m = ActividadPlanInspeccion::find($request->get('actividad_plan_id'));
+            $m->plan_inspeccion_id = $request->get('plan_inspeccion_id');
+            $m->criterio_id = $request->get('criterio_id');
+            $m->proceso_id = $request->get('proceso_id');
+            $m->lugar = $request->get('lugar');
+            $m->actividades = $request->get('actividad');
+            $m->inspeccionado_id = $request->get('inspeccionado_id');
+            $m->inspector_id = $request->get('inspector_id');
+            $m->fecha_inicio = $request->get('fecha_inicio');
+            $m->hora_inicio = $request->get('hora_inicio');
+            $m->fecha_cierre = $request->get('fecha_cierre');
+            $m->hora_final = $request->get('hora_final');
+            $m->activo = 1;
+            $m->usuario_modificador = $request->get('usuario');
+            $m->fecha_modificacion = \DB::raw("GETDATE()");
+            $m->save();
+
+            return $m;
+        }
+    }
     
     public function getProcesosSubProcesos() {
         $db = \DB::select('select p.* from vw_procesos_subprocesos p order by p.proceso');

@@ -356,4 +356,40 @@ class InspeccionController extends Controller
 
         return response()->json($response, 200);
     }
+
+    public function crearActividadPlanInspeccion(Request $request) {
+        $m = new ActividadPlanInspeccion;
+        $ac = $m->crud_actividades_plan_inspeccion($request, 'C');
+
+        if ($ac->actividad_plan_id != 0) {
+            $response = json_encode(array('mensaje' => 'Ha creado exitosamente.', 'tipo' => 0, 'id' => $ac->actividad_plan_id), JSON_NUMERIC_CHECK);
+            $response = json_decode($response);
+
+            return response()->json($response);
+        }
+        else {
+            $response = json_encode(array('mensaje' => 'Error guardado.', 'tipo' => -1), JSON_NUMERIC_CHECK);
+            $response = json_decode($response);
+
+            return response()->json($response);
+        }
+    }
+
+    public function actualizarActividadPlanInspeccion(Request $request) {
+        $m = new ActividadPlanInspeccion;
+        $ac = $m->crud_actividades_plan_inspeccion($request, 'U');
+
+        if ($ac) {
+            $response = json_encode(array('mensaje' => 'Ha actualizado exitosamente.', 'tipo' => 0), JSON_NUMERIC_CHECK);
+            $response = json_decode($response);
+
+            return response()->json($response);
+        }
+        else {
+            $response = json_encode(array('mensaje' => 'Error guardado.', 'tipo' => -1), JSON_NUMERIC_CHECK);
+            $response = json_decode($response);
+
+            return response()->json($response);
+        }
+    }
 }
