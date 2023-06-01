@@ -93,15 +93,19 @@ Route::group(['prefix' => 'inspec'], function() {
     Route::post('inspeccion/getInspeccionInspectores', [InspeccionController::class, 'getInspeccionInspectores']);
     Route::post('inspeccion/crearInspeccionInspector', [InspeccionController::class, 'crearInspeccionInspector']);
     Route::post('inspeccion/actualizarInspeccionInspector', [InspeccionController::class, 'actualizarInspeccionInspector']);
+    Route::post('inspeccion/eliminarInspeccionInspector', [InspeccionController::class, 'eliminarInspeccionInspector']);
     Route::post('inspeccion/getInspeccionObservadores', [InspeccionController::class, 'getInspeccionObservadores']);
     Route::post('inspeccion/crearInspeccionObservador', [InspeccionController::class, 'crearInspeccionObservador']);
     Route::post('inspeccion/actualizarInspeccionObservador', [InspeccionController::class, 'actualizarInspeccionObservador']);
+    Route::post('inspeccion/eliminarInspeccionObservador', [InspeccionController::class, 'eliminarInspeccionObservador']);
     Route::post('inspeccion/getInspeccionParticulares', [InspeccionController::class, 'getInspeccionParticulares']);
     Route::post('inspeccion/crearInspeccionParticular', [InspeccionController::class, 'crearInspeccionParticular']);
     Route::post('inspeccion/actualizarInspeccionParticular', [InspeccionController::class, 'actualizarInspeccionParticular']);
+    Route::post('inspeccion/eliminarInspeccionParticular', [InspeccionController::class, 'eliminarInspeccionParticular']);
     Route::post('inspeccion/getInspeccionTecnicos', [InspeccionController::class, 'getInspeccionTecnicos']);
     Route::post('inspeccion/crearInspeccionTecnico', [InspeccionController::class, 'crearInspeccionTecnico']);
     Route::post('inspeccion/actualizarInspeccionTecnico', [InspeccionController::class, 'actualizarInspeccionTecnico']);
+    Route::post('inspeccion/eliminarInspeccionTecnico', [InspeccionController::class, 'eliminarInspeccionTecnico']);
 
     // plan inspeccion
     Route::post('inspeccion/getPlanInspecciones', [InspeccionController::class, 'getPlanesInspecciones']);

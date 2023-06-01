@@ -166,6 +166,23 @@ class InspeccionController extends Controller
         }
     }
 
+    public function eliminarInspeccionInspector(Request $request) {
+        $m = InspeccionInspector::where('equipo_inspector_id', $request->get('equipo_inspector_id'))->delete();
+
+        if ($m) {
+            $response = json_encode(array('mensaje' => 'Ha eliminado exitosamente.', 'tipo' => 0), JSON_NUMERIC_CHECK);
+            $response = json_decode($response);
+
+            return response()->json($response);
+        }
+        else {
+            $response = json_encode(array('mensaje' => 'Error eliminado.', 'tipo' => -1), JSON_NUMERIC_CHECK);
+            $response = json_decode($response);
+
+            return response()->json($response);
+        }
+    }
+
     public function getInspeccionObservadores(Request $request) {
         $m = new InspeccionObservador;
         $datos = $m->getInspeccionObservadores($request);
@@ -205,6 +222,23 @@ class InspeccionController extends Controller
         }
         else {
             $response = json_encode(array('mensaje' => 'Error guardado.', 'tipo' => -1), JSON_NUMERIC_CHECK);
+            $response = json_decode($response);
+
+            return response()->json($response);
+        }
+    }
+
+    public function eliminarInspeccionObservador(Request $request) {
+        $m = InspeccionObservador::where('observador_id', $request->get('observador_id'))->delete();
+
+        if ($m) {
+            $response = json_encode(array('mensaje' => 'Ha eliminado exitosamente.', 'tipo' => 0), JSON_NUMERIC_CHECK);
+            $response = json_decode($response);
+
+            return response()->json($response);
+        }
+        else {
+            $response = json_encode(array('mensaje' => 'Error eliminado.', 'tipo' => -1), JSON_NUMERIC_CHECK);
             $response = json_decode($response);
 
             return response()->json($response);
@@ -256,6 +290,25 @@ class InspeccionController extends Controller
         }
     }
 
+    public function eliminarInspeccionParticular(Request $request) {
+        $m = InspeccionParticular::where('criterio_particular_id', $request->get('criterio_particular_id'))->delete();
+
+        \Log::info($m);
+        
+        if ($m) {
+            $response = json_encode(array('mensaje' => 'Ha eliminado exitosamente.', 'tipo' => 0), JSON_NUMERIC_CHECK);
+            $response = json_decode($response);
+
+            return response()->json($response);
+        }
+        else {
+            $response = json_encode(array('mensaje' => 'Error eliminado.', 'tipo' => -1), JSON_NUMERIC_CHECK);
+            $response = json_decode($response);
+
+            return response()->json($response);
+        }
+    }
+
     public function getInspeccionTecnicos(Request $request) {
         $m = new InspeccionTecnico;
         $datos = $m->getInspeccionTecnicos($request);
@@ -295,6 +348,23 @@ class InspeccionController extends Controller
         }
         else {
             $response = json_encode(array('mensaje' => 'Error guardado.', 'tipo' => -1), JSON_NUMERIC_CHECK);
+            $response = json_decode($response);
+
+            return response()->json($response);
+        }
+    }
+
+    public function eliminarInspeccionTecnico(Request $request) {
+        $m = InspeccionTecnico::where('equipo_tecnico_id', $request->get('equipo_tecnico_id'))->delete();
+
+        if ($m) {
+            $response = json_encode(array('mensaje' => 'Ha eliminado exitosamente.', 'tipo' => 0), JSON_NUMERIC_CHECK);
+            $response = json_decode($response);
+
+            return response()->json($response);
+        }
+        else {
+            $response = json_encode(array('mensaje' => 'Error eliminado.', 'tipo' => -1), JSON_NUMERIC_CHECK);
             $response = json_decode($response);
 
             return response()->json($response);
