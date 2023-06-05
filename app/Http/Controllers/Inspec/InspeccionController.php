@@ -385,8 +385,8 @@ class InspeccionController extends Controller
         $m = new InspeccionTecnico;
         $in = $m->crud_insp_tecnicos($request, 'C');
 
-        if ($in->externo_tecnico_id != 0) {
-            $response = json_encode(array('mensaje' => 'Ha creado exitosamente.', 'tipo' => 0, 'id' => $in->externo_tecnico_id), JSON_NUMERIC_CHECK);
+        if ($in->experto_tecnico_id != 0) {
+            $response = json_encode(array('mensaje' => 'Ha creado exitosamente.', 'tipo' => 0, 'id' => $in->experto_tecnico_id), JSON_NUMERIC_CHECK);
             $response = json_decode($response);
 
             return response()->json($response);
@@ -418,7 +418,7 @@ class InspeccionController extends Controller
     }
 
     public function eliminarInspeccionTecnico(Request $request) {
-        $m = InspeccionTecnico::where('equipo_tecnico_id', $request->get('equipo_tecnico_id'))->delete();
+        $m = InspeccionTecnico::where('experto_tecnico_id', $request->get('experto_tecnico_id'))->delete();
 
         if ($m) {
             $response = json_encode(array('mensaje' => 'Ha eliminado exitosamente.', 'tipo' => 0), JSON_NUMERIC_CHECK);
