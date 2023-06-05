@@ -32,11 +32,12 @@ class Inspeccion extends Model
             $m->objetivo = $request->get('objetivo');
             $m->alcance = $request->get('alcance');
             $m->tipo_inspeccion_id = $request->get('tipo_inspeccion_id');
-            $m->criterio_id = $request->get('criterio_id');
+            // $m->criterio_id = $request->get('criterio_id');
             $m->fecha_inicio = $request->get('fecha_inicio');
             $m->hora_inicio = $request->get('hora_inicio');
             $m->fecha_termino = $request->get('fecha_cierre');
             $m->hora_termino = $request->get('hora_termino');
+            $m->observaciones = $request->get('observaciones');
             $m->activo = 1;
             $m->usuario_creador = $request->get('usuario');
             $m->fecha_creacion = \DB::raw("GETDATE()");
@@ -59,11 +60,12 @@ class Inspeccion extends Model
             $m->objetivo = $request->get('objetivo');
             $m->alcance = $request->get('alcance');
             $m->tipo_inspeccion_id = $request->get('tipo_inspeccion_id');
-            $m->criterio_id = $request->get('criterio_id');
+            // $m->criterio_id = $request->get('criterio_id');
             $m->fecha_inicio = $request->get('fecha_inicio');
             $m->hora_inicio = $request->get('hora_inicio');
             $m->fecha_termino = $request->get('fecha_cierre');
             $m->hora_termino = $request->get('hora_termino');
+            $m->observaciones = $request->get('observaciones');
             $m->activo = 1;
             $m->usuario_modificador = $request->get('usuario');
             $m->fecha_modificacion = \DB::raw("GETDATE()");

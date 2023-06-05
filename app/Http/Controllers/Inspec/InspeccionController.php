@@ -10,6 +10,7 @@ use App\Models\Inspeccion;
 use App\Models\PlanInspeccion;
 use App\Models\ActividadPlanInspeccion;
 use App\Models\UsersLDAP;
+use App\Models\InspeccionCriterio;
 use App\Models\InspeccionInspector;
 use App\Models\InspeccionObservador;
 use App\Models\InspeccionParticular;
@@ -121,6 +122,68 @@ class InspeccionController extends Controller
         }
     }
 
+    public function getInspeccionCriterios(Request $request) {
+        $m = new InspeccionCriterio;
+        $datos = $m->getInspeccionCriterios($request);
+        $response = json_encode(array('result' => $datos, 'tipo' => 0), JSON_NUMERIC_CHECK);
+        $response = json_decode($response);
+
+        return response()->json($response, 200);
+    }
+
+    public function crearInspeccionCriterio(Request $request) {
+        $m = new InspeccionCriterio;
+        $in = $m->crud_insp_criterios($request, 'C');
+
+        if ($in->insp_criterio_id != 0) {
+            $response = json_encode(array('mensaje' => 'Ha creado exitosamente.', 'tipo' => 0, 'id' => $in->insp_criterio_id), JSON_NUMERIC_CHECK);
+            $response = json_decode($response);
+
+            return response()->json($response);
+        }
+        else {
+            $response = json_encode(array('mensaje' => 'Error guardado.', 'tipo' => -1), JSON_NUMERIC_CHECK);
+            $response = json_decode($response);
+
+            return response()->json($response);
+        }
+    }
+
+    public function actualizarInspeccionCriterio(Request $request) {
+        $m = new InspeccionCriterio;
+        $in = $m->crud_insp_criterios($request, 'U');
+
+        if ($in) {
+            $response = json_encode(array('mensaje' => 'Ha actualizado exitosamente.', 'tipo' => 0, 'id' => $in->insp_criterio_id), JSON_NUMERIC_CHECK);
+            $response = json_decode($response);
+
+            return response()->json($response);
+        }
+        else {
+            $response = json_encode(array('mensaje' => 'Error actualizado.', 'tipo' => -1), JSON_NUMERIC_CHECK);
+            $response = json_decode($response);
+
+            return response()->json($response);
+        }
+    }
+
+    public function eliminarInspeccionCriterio(Request $request) {
+        $m = InspeccionCriterio::where('insp_criterio_id', $request->get('insp_criterio_id'))->delete();
+
+        if ($m) {
+            $response = json_encode(array('mensaje' => 'Ha eliminado exitosamente.', 'tipo' => 0), JSON_NUMERIC_CHECK);
+            $response = json_decode($response);
+
+            return response()->json($response);
+        }
+        else {
+            $response = json_encode(array('mensaje' => 'Error eliminado.', 'tipo' => -1), JSON_NUMERIC_CHECK);
+            $response = json_decode($response);
+
+            return response()->json($response);
+        }
+    }
+
     public function getInspeccionInspectores(Request $request) {
         $m = new InspeccionInspector;
         $datos = $m->getInspeccionInspectores($request);
@@ -159,7 +222,7 @@ class InspeccionController extends Controller
             return response()->json($response);
         }
         else {
-            $response = json_encode(array('mensaje' => 'Error guardado.', 'tipo' => -1), JSON_NUMERIC_CHECK);
+            $response = json_encode(array('mensaje' => 'Error actualizado.', 'tipo' => -1), JSON_NUMERIC_CHECK);
             $response = json_decode($response);
 
             return response()->json($response);
@@ -322,8 +385,8 @@ class InspeccionController extends Controller
         $m = new InspeccionTecnico;
         $in = $m->crud_insp_tecnicos($request, 'C');
 
-        if ($in->equipo_tecnico_id != 0) {
-            $response = json_encode(array('mensaje' => 'Ha creado exitosamente.', 'tipo' => 0, 'id' => $in->equipo_tecnico_id), JSON_NUMERIC_CHECK);
+        if ($in->externo_tecnico_id != 0) {
+            $response = json_encode(array('mensaje' => 'Ha creado exitosamente.', 'tipo' => 0, 'id' => $in->externo_tecnico_id), JSON_NUMERIC_CHECK);
             $response = json_decode($response);
 
             return response()->json($response);

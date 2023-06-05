@@ -90,6 +90,10 @@ Route::group(['prefix' => 'inspec'], function() {
     Route::get('inspeccion/getUnidadDependencias', [InspeccionController::class, 'getUnidadDependencias']);
     Route::post('inspeccion/crearInspeccion', [InspeccionController::class, 'crearInspeccion']);
     Route::post('inspeccion/actualizarInspeccion', [InspeccionController::class, 'actualizarInspeccion']);
+    Route::post('inspeccion/getInspeccionCriterios', [InspeccionController::class, 'getInspeccionCriterio']);
+    Route::post('inspeccion/crearInspeccionCriterio', [InspeccionController::class, 'crearInspeccionCriterio']);
+    Route::post('inspeccion/actualizarInspeccionCriterio', [InspeccionController::class, 'actualizarInspeccionCriterio']);
+    Route::post('inspeccion/eliminarInspeccionCriterio', [InspeccionController::class, 'eliminarInspeccionCriterio']);
     Route::post('inspeccion/getInspeccionInspectores', [InspeccionController::class, 'getInspeccionInspectores']);
     Route::post('inspeccion/crearInspeccionInspector', [InspeccionController::class, 'crearInspeccionInspector']);
     Route::post('inspeccion/actualizarInspeccionInspector', [InspeccionController::class, 'actualizarInspeccionInspector']);

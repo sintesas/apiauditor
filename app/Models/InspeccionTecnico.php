@@ -10,14 +10,14 @@ class InspeccionTecnico extends Model
 {
     use HasFactory;
 
-    protected $table = 'sg_insp_equipo_tecnico';
+    protected $table = 'sg_insp_experto_tecnico';
 
-    protected $primaryKey = 'equipo_tecnico_id';
+    protected $primaryKey = 'experto_tecnico_id';
 
     public $timestamps = false;
 
     public function getInspeccionTecnicos(Request $request) {
-        $db = \DB::select('select * from sg_insp_equipo_tecnico where inspeccion_id = :id order by 1', array('id' => $request->get('inspeccion_id')));
+        $db = \DB::select('select * from sg_insp_experto_tecnico where inspeccion_id = :id order by 1', array('id' => $request->get('inspeccion_id')));
 
         return $db;
     }
@@ -35,7 +35,7 @@ class InspeccionTecnico extends Model
             return $m;
         }
         else if ($evento == 'U') {
-            $m = InspeccionTecnico::find($request->get('equipo_tecnico_id'));
+            $m = InspeccionTecnico::find($request->get('experto_tecnico_id'));
             $m->inspeccion_id = $request->get('inspeccion_id');
             $m->proceso_id = $request->get('proceso_id');
             $m->procesos = $request->get('procesos');
