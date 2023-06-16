@@ -43,8 +43,8 @@ class PlanInspeccion extends Model
             $m->fecha = \DB::raw('GETDATE()');
             $m->observaciones = $request->get('observaciones');
             $m->activo = 1;
-            $m->usuario_creador = $request->get('usuario');
-            $m->fecha_creacion = \DB::raw("GETDATE()");
+            $m->usuario_modificador = $request->get('usuario');
+            $m->fecha_modificacion = \DB::raw("GETDATE()");
             $m->save();
 
             return $m;

@@ -23,6 +23,7 @@ class Inspeccion extends Model
             $m->codigo = $request->get('codigo');
             $m->fecha_inicio_inspec = \DB::raw('GETDATE()');
             $m->unidad_id = $request->get('unidad_id');
+            $m->unidad = $request->get('unidad');
             $m->dependencia = $request->get('dependencia');
             $m->aspecto = $request->get('aspecto');
             $m->responsable_id = $request->get('responsable_id');
@@ -51,6 +52,7 @@ class Inspeccion extends Model
             $m->codigo = $request->get('codigo');
             $m->fecha_inicio_inspec = $request->get('fecha_inicio_inspec');
             $m->unidad_id = $request->get('unidad_id');
+            $m->unidad = $request->get('unidad');
             $m->dependencia = $request->get('dependencia');
             $m->aspecto = $request->get('aspecto');
             $m->responsable_id = $request->get('responsable_id');
