@@ -16,6 +16,12 @@ class Inspeccion extends Model
 
     public $timestamps = false;
 
+    public function getInspecciones() {
+        $db = \DB::select('select * from vw_inspecciones');
+
+        return $db;
+    }
+
     public function crud_inspecciones(Request $request, $evento) {
         if ($evento == 'C') {
             $m = new Inspeccion;

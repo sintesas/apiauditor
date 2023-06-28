@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\RolController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Config\PerfilController;
+use App\Http\Controllers\Inspec\AnotacionController;
 use App\Http\Controllers\Inspec\InspeccionController;
 use App\Http\Controllers\Param\ListaController;
 use App\Http\Controllers\Param\UnidadController;
@@ -85,7 +86,7 @@ Route::group(['prefix' => 'param'], function() {
 });
 
 Route::group(['prefix' => 'inspec'], function() {
-    // inspecciones
+    // Inspecciones
     Route::get('inspecciones', [InspeccionController::class, 'getInspecciones']);
     Route::get('inspeccion/getUnidadDependencias', [InspeccionController::class, 'getUnidadDependencias']);
     Route::post('inspeccion/crearInspeccion', [InspeccionController::class, 'crearInspeccion']);
@@ -111,7 +112,7 @@ Route::group(['prefix' => 'inspec'], function() {
     Route::post('inspeccion/actualizarInspeccionTecnico', [InspeccionController::class, 'actualizarInspeccionTecnico']);
     Route::post('inspeccion/eliminarInspeccionTecnico', [InspeccionController::class, 'eliminarInspeccionTecnico']);
 
-    // plan inspeccion
+    // Plan inspeccion
     Route::post('inspeccion/getPlanInspecciones', [InspeccionController::class, 'getPlanesInspecciones']);
     Route::get('inspeccion/getProcesosSubprocesos', [InspeccionController::class, 'getProcesosSubProcesos']);
     
@@ -126,4 +127,27 @@ Route::group(['prefix' => 'inspec'], function() {
     Route::post('inspeccion/getActividadesPlanInspeccion', [InspeccionController::class, 'getActividadesPlanInspeccion']);
     Route::post('inspeccion/crearActividadPlanInspeccion', [InspeccionController::class, 'crearActividadPlanInspeccion']);
     Route::post('inspeccion/actualizarActividadPlanInspeccion', [InspeccionController::class, 'actualizarActividadPlanInspeccion']);
+
+    // Anotaciones
+    Route::get('anotacion/getAnotaciones', [AnotacionController::class, 'getAnotaciones']);
+    Route::get('anotacion/getDependenciasLDAP', [AnotacionController::class, 'getDependenciasLDAP']);
+    Route::get('anotacion/getUsersLDAP', [AnotacionController::class, 'getUsersLDAP']);
+    Route::get('anotacion/getTipoAnotacion', [AnotacionController::class, 'getTipoAnotacion']);
+    Route::get('anotacion/getTemaCatalogacion', [AnotacionController::class, 'getTemaCatalogacion']);
+    Route::get('anotacion/getProcesosInternos', [AnotacionController::class, 'getProcesosInternos']);
+    Route::get('anotacion/getFuenteAnotacion', [AnotacionController::class, 'getFuenteAnotacion']);
+    Route::get('anotacion/getProgramaCalidad', [AnotacionController::class, 'getProgramaCalidad']);
+    Route::get('anotacion/getCriticidadAnotacion', [AnotacionController::class, 'getCriticidadAnotacion']);
+    Route::get('anotacion/getClaseAnotacion', [AnotacionController::class, 'getClaseAnotacion']);
+    Route::get('anotacion/getInspecciones', [AnotacionController::class, 'getInspecciones']);
+    Route::post('anotacion/getConsecutivoHallazgo', [AnotacionController::class, 'getConsecutivoHallazgo']);
+    Route::post('anotacion/getCriteriosInspeccion', [AnotacionController::class, 'getCriteriosInspeccion']);
+    Route::post('anotacion/crearAnotacion', [AnotacionController::class, 'crearAnotacion']);
+    Route::post('anotacion/actualizarAnotacion', [AnotacionController::class, 'actualizarAnotacion']);
+    Route::post('anotacion/crearAnotacionCorreccion', [AnotacionController::class, 'crearAnotacionCorreccion']);
+    Route::post('anotacion/actualizarAnotacionCorreccion', [AnotacionController::class, 'actualizarAnotacionCorrecion']);
+    Route::post('anotacion/crearAnotacionMejoramiento', [AnotacionController::class, 'crearAnotacionMejoramiento']);
+    Route::post('anotacion/actualizarAnotacionMejoramiento', [AnotacionController::class, 'actualizarAnotacionMejoramiento']);
+    Route::post('anotacion/crearAnotacionOrden', [AnotacionController::class, 'crearAnotacionOrden']);
+    Route::post('anotacion/actualizarAnotacionOrden', [AnotacionController::class, 'actualizarAnotacionOrden']);
 });
