@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\Anotacion;
+use App\Models\AnotacionActividad;
+use App\Models\AnotacionArchivo;
+use App\Models\AnotacionCausaRaiz;
 use App\Models\AnotacionCorreccion;
 use App\Models\AnotacionMejoramiento;
 use App\Models\AnotacionOrden;
@@ -36,7 +39,7 @@ class AnotacionController extends Controller
 
     public function getUsersLDAP() {
         $m = new UsersLDAP;
-        $datos = $m->getUsersLDAP();
+        $datos = $m->getFuncionarios();
 
         $response = json_encode(array('result' => $datos, 'tipo' => 0), JSON_NUMERIC_CHECK);
         $response = json_decode($response);
@@ -180,6 +183,26 @@ class AnotacionController extends Controller
         }
     }
 
+    public function getAnotacionArchivo(Request $request) {
+        $a = new AnotacionArchivo;
+        $datos = $a->getAnotacionArchivo($request);
+
+        $response = json_encode(array('result' => $datos, 'tipo' => 0), JSON_NUMERIC_CHECK);
+        $response = json_decode($response);
+
+        return response()->json($response, 200);
+    }
+
+    public function getAnotacionCorreccion(Request $request) {
+        $a = new AnotacionCorreccion;
+        $datos = $a->getAnotacionCorreccion($request);
+
+        $response = json_encode(array('result' => $datos, 'tipo' => 0), JSON_NUMERIC_CHECK);
+        $response = json_decode($response);
+
+        return response()->json($response, 200);
+    }
+
     public function crearAnotacionCorreccion(Request $request) {
         $m = new AnotacionCorreccion;
         $a = $m->crud_anotaciones_correccion($request, 'C');
@@ -214,6 +237,16 @@ class AnotacionController extends Controller
 
             return response()->json($response, 200);
         }
+    }
+
+    public function getAnotacionMejoramiento(Request $request) {
+        $a = new AnotacionMejoramiento;
+        $datos = $a->getAnotacionMejoramiento($request);
+        
+        $response = json_encode(array('result' => $datos, 'tipo' => 0), JSON_NUMERIC_CHECK);
+        $response = json_decode($response);
+
+        return response()->json($response, 200);
     }
 
     public function crearAnotacionMejoramiento(Request $request) {
@@ -252,6 +285,16 @@ class AnotacionController extends Controller
         }
     }
 
+    public function getAnotacionOrden(Request $request) {
+        $a = new AnotacionOrden;
+        $datos = $a->getAnotacionOrden($request);
+        
+        $response = json_encode(array('result' => $datos, 'tipo' => 0), JSON_NUMERIC_CHECK);
+        $response = json_decode($response);
+
+        return response()->json($response, 200);
+    }
+
     public function crearAnotacionOrden(Request $request) {
         $m = new AnotacionOrden;
         $a = $m->crud_anotaciones_orden($request, 'C');
@@ -273,6 +316,98 @@ class AnotacionController extends Controller
     public function actualizarAnotacionOrden(Request $request) {
         $m = new AnotacionOrden;
         $a = $m->crud_anotaciones_orden($request, 'U');
+
+        if ($a) {
+            $response = json_encode(array('mensaje' => 'Ha actualizado exitosamente.', 'tipo' => 0), JSON_NUMERIC_CHECK);
+            $response = json_decode($response);
+
+            return response()->json($response, 200);
+        }
+        else {
+            $response = json_encode(array('mensaje' => 'Error actualizado', 'tipo' => -1), JSON_NUMERIC_CHECK);
+            $response = json_decode($response);
+
+            return response()->json($response, 200);
+        }
+    }
+
+    public function getAnotacionCausaRaiz(Request $request) {
+        $m = new AnotacionCausaRaiz;
+        $datos = $m->getAnotacionCausaRaiz($request);
+
+        $response = json_encode(array('result' => $datos, 'tipo' => 0), JSON_NUMERIC_CHECK);
+        $response = json_decode($response);
+
+        return response()->json($response, 200);
+    }
+
+    public function crearAnotacionCausaRaiz(Request $request) {
+        $m = new AnotacionCausaRaiz;
+        $a = $m->crud_anotaciones_causa_raiz($request, 'C');
+
+        if ($a->hallazgo_causa_raiz_id != 0) {
+            $response = json_encode(array('mensaje' => 'Ha creado exitosamente.', 'tipo' => 0, 'id' => $a->hallazgo_causa_raiz_id), JSON_NUMERIC_CHECK);
+            $response = json_decode($response);
+
+            return response()->json($response, 200);
+        }
+        else {
+            $response = json_encode(array('mensaje' => 'Error guardado', 'tipo' => -1), JSON_NUMERIC_CHECK);
+            $response = json_decode($response);
+
+            return response()->json($response, 200);
+        }
+    }
+
+    public function actualizarAnotacionCausaRaiz(Request $request) {
+        $m = new AnotacionCausaRaiz;
+        $a = $m->crud_anotaciones_causa_raiz($request, 'U');
+
+        if ($a) {
+            $response = json_encode(array('mensaje' => 'Ha actualizado exitosamente.', 'tipo' => 0), JSON_NUMERIC_CHECK);
+            $response = json_decode($response);
+
+            return response()->json($response, 200);
+        }
+        else {
+            $response = json_encode(array('mensaje' => 'Error actualizado', 'tipo' => -1), JSON_NUMERIC_CHECK);
+            $response = json_decode($response);
+
+            return response()->json($response, 200);
+        }
+    }
+
+    public function getAnotacionActividad(Request $request) {
+        $m = new AnotacionActividad;
+        $datos = $m->getAnotacionActividad($request);
+
+        $response = json_encode(array('result' => $datos, 'tipo' => 0), JSON_NUMERIC_CHECK);
+        $response = json_decode($response);
+
+        return response()->json($response, 200);
+    }
+
+    public function crearAnotacionActividad(Request $request) {
+        $m = new AnotacionActividad;
+        $a = $m->crud_anotaciones_actividad($request, 'C');
+
+        if ($a->hallazgo_actividad_id != 0) {
+            $response = json_encode(array('mensaje' => 'Ha creado exitosamente.', 'tipo' => 0, 'id' => $a->hallazgo_actividad_id), JSON_NUMERIC_CHECK);
+            $response = json_decode($response);
+
+            return response()->json($response, 200);
+        }
+        else {
+            $response = json_encode(array('mensaje' => 'Error guardado', 'tipo' => -1), JSON_NUMERIC_CHECK);
+            $response = json_decode($response);
+
+            return response()->json($response, 200);
+        }
+    }
+
+    public function actualizarAnotacionActividad(Request $request) {
+        $m = new AnotacionActividad;
+        $a = $m->crud_anotaciones_actividad($request, 'U');
 
         if ($a) {
             $response = json_encode(array('mensaje' => 'Ha actualizado exitosamente.', 'tipo' => 0), JSON_NUMERIC_CHECK);

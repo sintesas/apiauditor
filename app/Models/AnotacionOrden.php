@@ -16,6 +16,18 @@ class AnotacionOrden extends Model
 
     public $timestamps = false;
 
+    public function getAnotacionOrden(Request $request) {
+        $db = AnotacionOrden::join('AU_Reg_DependenciasLDAP', 'sg_adm_hallazgos_orden.responsable_id', '=', 'AU_Reg_DependenciasLDAP.IdDependencia')
+                ->select('sg_adm_hallazgos_orden.orden_id',
+                         'sg_adm_hallazgos_orden.hallazgo_id',
+                         'sg_adm_hallazgos_orden.responsable_id',
+                         'AU_Reg_DependenciasLDAP.Nombre as responsable')
+                ->where('sg_adm_hallazgos_orden.hallazgo_id', '=', $request->get('hallazgo_id'))
+                ->get();
+        
+        return $db;
+    }
+
     public function crud_anotaciones_orden(Request $request, $evento) {
         if ($evento == 'C') {
             $a = new AnotacionOrden;

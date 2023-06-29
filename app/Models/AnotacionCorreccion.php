@@ -16,6 +16,18 @@ class AnotacionCorreccion extends Model
 
     public $timestamps = false;
 
+    public function getAnotacionCorreccion(Request $request) {
+        $db = AnotacionCorreccion::join('AU_Reg_DependenciasLDAP', 'sg_adm_hallazgos_correccion.responsable_id', '=', 'AU_Reg_DependenciasLDAP.IdDependencia')
+                ->select('sg_adm_hallazgos_correccion.correccion_id',
+                         'sg_adm_hallazgos_correccion.hallazgo_id',
+                         'sg_adm_hallazgos_correccion.responsable_id',
+                         'AU_Reg_DependenciasLDAP.Nombre as responsable')
+                ->where('sg_adm_hallazgos_correccion.hallazgo_id', '=', $request->get('hallazgo_id'))
+                ->get();
+        
+        return $db;
+    }
+
     public function crud_anotaciones_correccion(Request $request, $evento) {
         if ($evento == 'C') {
             $a = new AnotacionCorreccion;

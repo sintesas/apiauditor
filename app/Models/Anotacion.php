@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 
 use App\Models\Inspeccion;
+use App\Models\AnotacionArchivo;
 
 class Anotacion extends Model
 {
@@ -41,12 +42,17 @@ class Anotacion extends Model
                 $file = $request->file('archivo');
                 $fileName = time() . '.' . $file->getClientOriginalExtension();
                 $file->move(public_path('files'), $fileName);
+
+                if ($a->hallazgo_id != 0) {
+                    $m = new AnotacionArchivo;
+                    $m->guardarArchivo($obj['hallazgo_id'], $fileName, $obj['usuario']);
+                }
             }
 
             return $a;
         }
         else if ($evento == 'U') {
-            $a = Anotacion::find($obj['hallazgo']);
+            $a = Anotacion::find($obj['hallazgo_id']);
             $a->inspeccion_id = $obj['inspeccion_id'];
             $a->codificacion = $obj['codificacion'];
             $a->tipo_hallazgo_id = $obj['tipo_hallazgo_id'];
@@ -62,6 +68,11 @@ class Anotacion extends Model
                 $file = $request->file('archivo');
                 $fileName = time() . '.' . $file->getClientOriginalExtension();
                 $file->move(public_path('files'), $fileName);
+
+                if ($a->hallazgo_id != 0) {
+                    $m = new AnotacionArchivo;
+                    $m->guardarArchivo($obj['hallazgo_id'], $fileName, $obj['usuario']);
+                }
             }
 
             return $a;
