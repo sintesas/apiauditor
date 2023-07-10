@@ -33,12 +33,18 @@ class Anotacion extends Model
             $a->tema_catalogacion_id = $obj['tema_catalogacion_id'];
             $a->fecha = $obj['fecha'];
             $a->criterio_id = $obj['criterio_id'];
+            $a->proceso_id = $obj['proceso_id'];
             $a->descripcion_evidencia = $obj['descripcion_evidencia'];
             $a->usuario_creador = $obj['usuario'];
             $a->fecha_creacion = \DB::raw('GETDATE()');
             $a->save();
             
             if ($request->file('archivo')) {
+                $folderPath = public_path() . '/files';
+                if (!\File::exists($folderPath)) {
+                    \File::makeDirectory($folderPath, 0755, true);
+                }
+
                 $file = $request->file('archivo');
                 $fileName = time() . '.' . $file->getClientOriginalExtension();
                 $file->move(public_path('files'), $fileName);
@@ -59,12 +65,18 @@ class Anotacion extends Model
             $a->tema_catalogacion_id = $obj['tema_catalogacion_id'];
             $a->fecha = $obj['fecha'];
             $a->criterio_id = $obj['criterio_id'];
+            $a->proceso_id = $obj['proceso_id'];
             $a->descripcion_evidencia = $obj['descripcion_evidencia'];
             $a->usuario_modificador = $obj['usuario'];
             $a->fecha_modificacion = \DB::raw('GETDATE()');
             $a->save();
             
             if ($request->file('archivo')) {
+                $folderPath = public_path() . '/files';
+                if (!\File::exists($folderPath)) {
+                    \File::makeDirectory($folderPath, 0755, true);
+                }
+
                 $file = $request->file('archivo');
                 $fileName = time() . '.' . $file->getClientOriginalExtension();
                 $file->move(public_path('files'), $fileName);
