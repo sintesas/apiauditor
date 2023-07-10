@@ -157,7 +157,9 @@ Route::group(['prefix' => 'inspec'], function() {
     Route::post('anotacion/getAnotacionCausaRaiz', [AnotacionController::class, 'getAnotacionCausaRaiz']);
     Route::post('anotacion/crearAnotacionCausaRaiz', [AnotacionController::class, 'crearAnotacionCausaRaiz']);
     Route::post('anotacion/actualizarAnotacionCausaRaiz', [AnotacionController::class, 'actualizarAnotacionCausaRaiz']);
+    Route::post('anotacion/eliminarAnotacionCausaRaiz', [AnotacionController::class, 'eliminarAnotacionCausaRaiz']);
     Route::post('anotacion/getAnotacionActividad', [AnotacionController::class, 'getAnotacionActividad']);
     Route::post('anotacion/crearAnotacionActividad', [AnotacionController::class, 'crearAnotacionActividad']);
     Route::post('anotacion/actualizarAnotacionActividad', [AnotacionController::class, 'actualizarAnotacionActividad']);
+    Route::post('anotacion/eliminarAnotacionActividad', [AnotacionController::class, 'eliminarAnotacionActividad']);
 });

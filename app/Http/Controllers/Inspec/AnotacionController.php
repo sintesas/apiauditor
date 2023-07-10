@@ -377,6 +377,20 @@ class AnotacionController extends Controller
         }
     }
 
+    public function eliminarAnotacionCausaRaiz(Request $request) {
+        // $m = AnotacionActividad::where('hallazgo_causa_raiz_id', $request->get('hallazgo_causa_raiz_id'))->get();
+        // if ($m->count() > 0) {
+        //     $this->eliminarAnotacionActividad($request);
+        // }
+        $a = AnotacionCausaRaiz::find($request->get('hallazgo_causa_raiz_id'));
+        $a->delete();
+
+        $response = json_encode(array('mensaje' => 'Ha eliminado exitosamente.', 'tipo' => 0), JSON_NUMERIC_CHECK);
+        $response = json_decode($response);
+
+        return response()->json($response, 200);
+    }
+
     public function getAnotacionActividad(Request $request) {
         $m = new AnotacionActividad;
         $datos = $m->getAnotacionActividad($request);
@@ -421,5 +435,15 @@ class AnotacionController extends Controller
 
             return response()->json($response, 200);
         }
+    }
+
+    public function eliminarAnotacionActividad(Request $request) {
+        $a = AnotacionActividad::find($request->get('hallazgo_actividad_id'));
+        $a->delete();
+
+        $response = json_encode(array('mensaje' => 'Ha eliminado exitosamente.', 'tipo' => 0), JSON_NUMERIC_CHECK);
+        $response = json_decode($response);
+
+        return response()->json($response, 200);
     }
 }
