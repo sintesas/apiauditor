@@ -17,18 +17,7 @@ class AnotacionActividad extends Model
     public $timestamps = false;
 
     public function getAnotacionActividad(Request $request) {
-        $db = AnotacionActividad::join('AU_Reg_usersLDAP', 'sg_adm_hallazgos_actividad.responsable_id', '=', 'AU_Reg_usersLDAP.IdUserLDAP')
-                ->select('sg_adm_hallazgos_actividad.hallazgo_actividad_id',
-                         'sg_adm_hallazgos_actividad.hallazgo_causa_raiz_id',
-                         'sg_adm_hallazgos_actividad.descripcion',
-                         'sg_adm_hallazgos_actividad.entregable',
-                         'sg_adm_hallazgos_actividad.cantidad_entregable',
-                         'sg_adm_hallazgos_actividad.fecha_inicio',
-                         'sg_adm_hallazgos_actividad.fecha_termino',
-                         'sg_adm_hallazgos_actividad.responsable_id',
-                         'AU_Reg_usersLDAP.Name as responsable')
-                ->where('sg_adm_hallazgos_actividad.hallazgo_causa_raiz_id', '=', $request->get('hallazgo_causa_raiz_id'))
-                ->get();
+        $db = \DB::select('select * from vw_adm_hallazgos_actividad where hallazgo_causa_raiz_id = :id', array('id' => $request->get('hallazgo_causa_raiz_id')));
         
         return $db;
     }

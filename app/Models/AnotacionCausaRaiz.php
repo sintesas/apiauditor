@@ -17,9 +17,7 @@ class AnotacionCausaRaiz extends Model
     public $timestamps = false;
 
     public function getAnotacionCausaRaiz(Request $request) {
-        $db = AnotacionCausaRaiz::select('hallazgo_causa_raiz_id','hallazgo_id','causa_raiz')
-                ->where('hallazgo_id', '=', $request->get('hallazgo_id'))
-                ->get();
+        $db = \DB::select('select * from vw_adm_hallazgos_causa_raiz where hallazgo_id = :id', array('id' => $request->get('hallazgo_id')));
 
         return $db;
     }

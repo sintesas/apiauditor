@@ -17,13 +17,7 @@ class AnotacionMejoramiento extends Model
     public $timestamps = false;
 
     public function getAnotacionMejoramiento(Request $request) {
-        $db = AnotacionMejoramiento::join('AU_Reg_DependenciasLDAP', 'sg_adm_hallazgos_mejoramiento.responsable_id', '=', 'AU_Reg_DependenciasLDAP.IdDependencia')
-                ->select('sg_adm_hallazgos_mejoramiento.mejoramiento_id',
-                         'sg_adm_hallazgos_mejoramiento.hallazgo_id',
-                         'sg_adm_hallazgos_mejoramiento.responsable_id',
-                         'AU_Reg_DependenciasLDAP.Nombre as responsable')
-                ->where('sg_adm_hallazgos_mejoramiento.hallazgo_id', '=', $request->get('hallazgo_id'))
-                ->get();
+        $db = \DB::select('select * from vw_adm_hallazgos_mejoramiento where hallazgo_id = :id', array('id' => $request->get('hallazgo_id')));
         
         return $db;
     }
