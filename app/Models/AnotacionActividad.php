@@ -31,7 +31,7 @@ class AnotacionActividad extends Model
             $a->cantidad_entregable = $request->get('cantidad_entregable');
             $a->fecha_inicio = $request->get('fecha_inicio');
             $a->fecha_termino = $request->get('fecha_termino');
-            $a->responsable_id = $request->get('responsable_id');
+            $a->responsable_id = $request->get('responsable_id') == 0 ? null : $request->get('responsable_id');
             $a->usuario_creador = $request->get('usuario');
             $a->fecha_creacion = \DB::raw('GETDATE()');
             $a->save();
@@ -46,7 +46,7 @@ class AnotacionActividad extends Model
             $a->cantidad_entregable = $request->get('cantidad_entregable');
             $a->fecha_inicio = $request->get('fecha_inicio');
             $a->fecha_termino = $request->get('fecha_termino');
-            $a->responsable_id = $request->get('responsable_id');
+            $a->responsable_id = $request->get('responsable_id') == 0 ? null : $request->get('responsable_id');
             $a->usuario_modificador = $request->get('usuario');
             $a->fecha_modificacion = \DB::raw('GETDATE()');
             $a->save();

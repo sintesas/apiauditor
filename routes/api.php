@@ -11,6 +11,7 @@ use App\Http\Controllers\Inspec\AnotacionController;
 use App\Http\Controllers\Inspec\InspeccionController;
 use App\Http\Controllers\Param\ListaController;
 use App\Http\Controllers\Param\UnidadController;
+use App\Http\Controllers\Seguim\SeguimientoController;
 
 use App\Http\Controllers\Mail\MailController;
 
@@ -162,4 +163,17 @@ Route::group(['prefix' => 'inspec'], function() {
     Route::post('anotacion/crearAnotacionActividad', [AnotacionController::class, 'crearAnotacionActividad']);
     Route::post('anotacion/actualizarAnotacionActividad', [AnotacionController::class, 'actualizarAnotacionActividad']);
     Route::post('anotacion/eliminarAnotacionActividad', [AnotacionController::class, 'eliminarAnotacionActividad']);
+});
+
+Route::group(['prefix' => 'seguim'], function () {
+    Route::get('seguimientos', [SeguimientoController::class, 'getSeguimientos']);
+    Route::get('seguimiento/getInspecciones', [SeguimientoController::class, 'getInspecciones']);
+    Route::get('seguimiento/getAnotaciones', [SeguimientoController::class, 'getAnotaciones']);
+    Route::post('seguimiento/getAnotacionCausaRaiz', [SeguimientoController::class, 'getAnotacionCausaRaiz']);
+    Route::post('seguimiento/getAnotacionActividad', [SeguimientoController::class, 'getAnotacionActividad']);
+    Route::get('seguimiento/getTemaCatalogacion', [SeguimientoController::class, 'getTemaCatalogacion']);
+    Route::get('seguimiento/getConceptoEfectividad', [SeguimientoController::class, 'getConceptoEfectividad']);
+    Route::post('seguimiento/getSeguimientoArchivo', [SeguimientoController::class, 'getSeguimientoArchivo']);
+    Route::post('seguimiento/crearSeguimientos', [SeguimientoController::class, 'crearSeguimientos']);
+    Route::post('seguimiento/actualizarSeguimientos', [SeguimientoController::class, 'actualizarSeguimientos']);
 });
