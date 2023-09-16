@@ -23,7 +23,8 @@ class Rol extends Model
             $rol = new Rol;
             $rol->name = $request->get('rol');
             $rol->activo = 1;
-            $rol->created_at = \DB::raw('GETDATE()');
+            $rol->usuario_creador = $request->get('usuario');
+            $rol->fecha_creacion = \DB::raw('GETDATE()');
             $rol->save();            
 
             return $rol;
@@ -32,7 +33,8 @@ class Rol extends Model
             $rol = Rol::find($request->get('rol_id'));
             $rol->name = $request->get('rol');
             $rol->activo = $request->get('activo') == true ? 1 : 0;
-            $rol->updated_at = \DB::raw('GETDATE()');
+            $rol->usuario_modificador = $request->get('usuario');
+            $rol->fecha_modificacion = \DB::raw('GETDATE()');
             $rol->save();
 
             return $rol;
