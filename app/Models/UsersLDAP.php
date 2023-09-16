@@ -10,24 +10,24 @@ class UsersLDAP extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'IdUserLDAP';
+    protected $primaryKey = 'usuario_id';
 
-    protected $table = 'AU_Reg_usersLDAP';
+    protected $table = 'tb_reg_usuarios';
 
     public function getUsersLDAP() {
-        $db = \DB::select('select * from AU_Reg_usersLDAP order by 1');
+        $db = \DB::select('select * from vw_usuarios_ldap order by 1');
   
         return $db;
     }
 
     public function getFuncionarios() {
-        $db = \DB::select('select IdUserLDAP, Name from AU_Reg_usersLDAP order by 1');
+        $db = \DB::select('select usuario_id, nombre_completo from vw_usuarios_ldap order by 1');
 
         return $db;
     }
 
     public function getResponsables() {
-        $db = \DB::select('select IdUserLDAP, Name from AU_Reg_usersLDAP order by 1');
+        $db = \DB::select('select usuario_id, nombre_completo from vw_usuarios_ldap order by 1');
 
         return $db;
     }

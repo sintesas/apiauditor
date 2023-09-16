@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
+use App\Models\Usuario;
+
 class Personal extends Model
 {
     use HasFactory;
@@ -26,8 +28,8 @@ class Personal extends Model
 
         $p = Personal::orderBy('Nombres', 'asc')
        ->leftjoin('AU_Mst_Grado', 'AU_Mst_Grado.IdGrado', '=', 'AU_Reg_Personal.IdGrado')
-       ->join('users', 'users.IdPersonal', '=', 'AU_Reg_Personal.IdPersonal')
-       ->select("AU_Reg_Personal.*","users.id","users.name", "users.email", "AU_Mst_Grado.Abreviatura as Grado")->get();
+       ->join('sg_adm_usuarios', 'sg_adm_usuarios.personal_id', '=', 'AU_Reg_Personal.IdPersonal')
+       ->select("AU_Reg_Personal.*","sg_adm_usuarios.usuario_id","sg_adm_usuarios.nombre_completo", "sg_adm_usuarios.email", "AU_Mst_Grado.Abreviatura as Grado")->get();
 
        $data = array();
        foreach ($p as $item) {
@@ -78,11 +80,11 @@ class Personal extends Model
             $tmp['IdTaller'] = $item->IdTaller;
             $tmp['IdEscuadron'] = $item->IdEscuadron;
             $tmp['Foto'] = $item->Foto;
-            $tmp['Active'] = 1;
+            $tmp['Active'] = $item->Active;
             $tmp['IdProceso'] = $item->IdProceso;
             $tmp['IdTipoIdent'] = $item->IdTipoIdent;
-            $tmp['id'] = $item->id;
-            $tmp['name'] = $item->name;
+            $tmp['usuario_id'] = $item->usuario_id;
+            $tmp['nombre_completo'] = $item->nombre_completo;
             $tmp['email'] = $item->email;
             $tmp['Grado'] = $item->Grado;
             $tmp['existe_img'] = file_exists($folderPath . $item->Foto) ? 1 : 0;
@@ -217,7 +219,7 @@ class Personal extends Model
             // $persona->IdEspecialidadCertificacion = $request->get('idespecialidadcertificacion');
             // $persona->IdEscuadron = $request->get('idescuadron');
             $persona->IdTipoIdent = $request->get('idtipoident');
-            $persona->Active = 1;
+            $persona->Active = $request->get('active') == true ? 1 : 0;
 
             // if ($request->get('foto') != null) {
             //     $folderPath = public_path() . '/secad/Personal/Fotos';
@@ -236,6 +238,12 @@ class Personal extends Model
 
             //     $persona->Foto = $persona->Cedula . $request->get('tipo_imagen');
             // }
+
+            $u = Usuario::find($request->get('usuario_id'));
+            $u->activo = $request->get('active') == true ? 1 : 0;
+            $u->usuario_modificador = $request->get('usuario');
+            $u->fecha_modificacion = \DB::raw("GETDATE()");
+            $u->save();
 
             $persona->save();
 

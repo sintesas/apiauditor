@@ -15,13 +15,13 @@ class UsuarioRol extends Model
     protected $primaryKey = 'usuario_rol_id';
 
     protected $fillable = [
-        "usuario_rol_id,user_id,rol_id,rol_privilegio_id,activo,usuario_creador,fecha_creacion,usuario_modificador,fecha_modificacion"
+        "usuario_rol_id,usuario_id,rol_id,rol_privilegio_id,activo,usuario_creador,fecha_creacion,usuario_modificador,fecha_modificacion"
     ];
 
     public $timestamps = false;
 
     public function getUsuarioRolById(Request $request) {
-        $db = \DB::select('exec pr_get_sg_adm_usuarios_roles_by_user_id ?', [ $request->get('user_id') ]);
+        $db = \DB::select('exec pr_get_sg_adm_usuarios_roles_by_user_id ?', [ $request->get('usuario_id') ]);
 
         return $db;
     }
@@ -29,7 +29,7 @@ class UsuarioRol extends Model
     public function crud_usuarios_roles(Request $request, $evento) {
         if ($evento == 'C') {
             $m = new UsuarioRol;
-            $m->user_id = $request->get('user_id');
+            $m->usuario_id = $request->get('usuario_id');
             $m->rol_id = $request->get('rol_id');
             $m->rol_privilegio_id = $request->get('rol_privilegio_id');
             $m->activo = $request->get('activo') == true ? 1 : 0;
@@ -42,7 +42,7 @@ class UsuarioRol extends Model
         else if ($evento == 'U') {
             $m = UsuarioRol::find($request->get('usuario_rol_id'));
             $m->usuario_rol_id = $request->get('usuario_rol_id');
-            $m->user_id = $request->get('user_id');
+            $m->usuario_id = $request->get('usuario_id');
             $m->rol_id = $request->get('rol_id');
             $m->activo = $request->get('activo') == true ? 1 : 0;
             $m->usuario_modificador = $request->get('usuario');
@@ -54,7 +54,7 @@ class UsuarioRol extends Model
     }
 
     public function get_usuarios_roles_by_usuario_id(Request $request) {
-        $db = \DB::select("exec pr_get_sg_adm_usuarios_roles_by_user_id ?", array($request->input('user_id')));
+        $db = \DB::select("exec pr_get_sg_adm_usuarios_roles_by_user_id ?", array($request->input('usuario_id')));
 
         return $db;
     }

@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\Rol;
-use App\Models\User;
+use App\Models\Usuario;
 
 class PerfilController extends Controller
 {
@@ -30,12 +30,13 @@ class PerfilController extends Controller
 
             $securePass = password_hash($pass, PASSWORD_BCRYPT, $options);
 
-            $usuario = User::find($request->get('id'));
+            $usuario = Usuario::find($request->get('usuario_id'));
 
-            $usuario->name = $request->get('name');
+            $usuario->nombre_completo = $request->get('nombre_completo');
             $usuario->email = $request->get('email');
             $usuario->password = $securePass;
-            $usuario->updated_at = \DB::raw('GETDATE()');
+            $usuario->usuario_modificador = $request->get('usuario');
+            $usuario->fecha_modificacion = \DB::raw('GETDATE()');
             $usuario->save();
 
             $response = json_encode(array('mensaje' => 'Usuario actualizado.', 'tipo' => 0), JSON_NUMERIC_CHECK);
@@ -59,12 +60,13 @@ class PerfilController extends Controller
 
             $securePass = password_hash($pass, PASSWORD_BCRYPT, $options);
 
-            $usuario = User::where('email', $email)->firstOrFail();
-            $name = $usuario->name;
-            $usuario->name = $name;
+            $usuario = Usuario::where('email', $email)->firstOrFail();
+            $nombre_completo = $usuario->nombre_completo;
+            $usuario->nombre_completo = $nombre_completo;
             $usuario->email = $email;
             $usuario->password = $securePass;
-            $usuario->updated_at = \DB::raw('GETDATE()');
+            $usuario->usuario_modificador = $request->get('usuario');
+            $usuario->fecha_modificacion = \DB::raw('GETDATE()');
             $usuario->save();
 
             $response = json_encode(array('mensaje' => 'Ha reestablecido la contreseña', 'tipo' => 0), JSON_NUMERIC_CHECK);

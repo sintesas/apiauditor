@@ -26,8 +26,7 @@ class InspeccionObservador extends Model
         if ($evento == 'C') {
             $m = new InspeccionObservador;
             $m->inspeccion_id = $request->get('inspeccion_id');
-            $m->user_id = $request->get('user_id');
-            $m->observador = $request->get('observador');
+            $m->usuario_id = $request->get('usuario_id');
             $m->save();
 
             return $m;
@@ -35,8 +34,7 @@ class InspeccionObservador extends Model
         else if ($evento == 'U') {
             $m = InspeccionObservador::find($request->get('observador_id'));
             $m->inspeccion_id = $request->get('inspeccion_id');
-            $m->user_id = $request->get('user_id');
-            $m->observador = $request->get('observador');
+            $m->usuario_id = $request->get('usuario_id');
             $m->save();
 
             return $m;

@@ -24,7 +24,7 @@ use App\Models\Escuadrones;
 use App\Models\ProcesoAuditoria;
 use App\Models\Permiso;
 use App\Models\Rol;
-use App\Models\User;
+use App\Models\Usuario;
 use App\Models\UsersLDAP;
 use App\Models\UsuarioMenu;
 use App\Models\UsuarioRol;
@@ -272,7 +272,7 @@ class UserController extends Controller
     }
 
     public function actualizarUsuario(Request $request) {
-        $model = new User;
+        $model = new Usuario;
 
         try {
             $db = $model->crud_usuarios($request, 'U');

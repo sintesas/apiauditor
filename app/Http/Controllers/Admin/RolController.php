@@ -11,7 +11,7 @@ use App\Models\RolPrivilegio;
 class RolController extends Controller
 {
     public function getRoles() {    
-        $datos = \DB::select("select * from roles order by id");
+        $datos = \DB::select("select * from sg_adm_roles order by rol_id");
 
         $response = json_encode(array('result' => $datos, 'tipo' => 0), JSON_NUMERIC_CHECK);
         $response = json_decode($response);
@@ -20,7 +20,7 @@ class RolController extends Controller
     }
 
     public function getRolesActivos() {
-       $datos = \DB::select("select * from roles where activo = 1");
+       $datos = \DB::select("select * from sg_adm_roles where activo = 1");
 
         $response = json_encode(array('result' => $datos, 'tipo' => 0), JSON_NUMERIC_CHECK);
         $response = json_decode($response);

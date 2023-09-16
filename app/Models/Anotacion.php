@@ -149,9 +149,10 @@ class Anotacion extends Model
     }
 
     public function getConsecutivoHallazgo(Request $request) {
-        $db = \DB::select('exec pr_get_consecutivo_hallazgo ?',
+        $db = \DB::select('exec pr_get_consecutivo_hallazgo ?,?',
                          [
-                            $request->get('inspeccion_id')
+                            $request->get('inspeccion_id'),
+                            $request->get('tipo_hallazgo_cod')
                          ]);
         
         return $db;

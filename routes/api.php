@@ -174,6 +174,12 @@ Route::group(['prefix' => 'seguim'], function () {
     Route::get('seguimiento/getTemaCatalogacion', [SeguimientoController::class, 'getTemaCatalogacion']);
     Route::get('seguimiento/getConceptoEfectividad', [SeguimientoController::class, 'getConceptoEfectividad']);
     Route::post('seguimiento/getSeguimientoArchivo', [SeguimientoController::class, 'getSeguimientoArchivo']);
+    Route::get('seguimiento/getFuncionarios', [SeguimientoController::class, 'getFuncionarios']);
     Route::post('seguimiento/crearSeguimientos', [SeguimientoController::class, 'crearSeguimientos']);
     Route::post('seguimiento/actualizarSeguimientos', [SeguimientoController::class, 'actualizarSeguimientos']);
+    Route::post('seguimiento/getEventos', [SeguimientoController::class, 'getEventos']);
+    Route::post('seguimiento/crearEventos', [SeguimientoController::class, 'crearEventos']);
+    Route::post('seguimiento/actualizarEventos', [SeguimientoController::class, 'actualizarEventos']);
+    Route::post('seguimiento/eliminarEvento', [SeguimientoController::class, 'eliminarEvento']);
+    Route::get('seguimiento/exportarSeguimientos', [SeguimientoController::class, 'exportarSeguimientos']);
 });

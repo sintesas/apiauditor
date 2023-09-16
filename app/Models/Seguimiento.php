@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 use App\Models\SeguimientoArchivo;
 
@@ -27,7 +28,7 @@ class Seguimiento extends Model
     }
 
     public function getExportSeguimientos() {
-        $db = \DB::select('select * from vw_export_seguimiento');
+        $db = \DB::select('select * from vw_export_seguimiento order by 1');
 
         return $db;
     }
@@ -60,9 +61,10 @@ class Seguimiento extends Model
                 }
 
                 $file = $request->file('archivo');
+                $uuid = Str::uuid();
 
                 if ($s->seguimiento_id != 0) {
-                    $fileName = 'sgm_' . strtolower(str_replace(' ', '', $obj['codigo_inspeccion'])) . 's' . $s->seguimiento_id . '.' . $file->getClientOriginalExtension();
+                    $fileName = 'sgm_' . $uuid . '.' . $file->getClientOriginalExtension();
                     $file->move(public_path('files/seguim'), $fileName);
 
                     $m = new SeguimientoArchivo;
@@ -98,8 +100,10 @@ class Seguimiento extends Model
 
                 $file = $request->file('archivo');
 
-                if ($obj['seguimiento_id'] != 0) {
-                    $fileName = 'sgm_' . strtolower(str_replace(' ', '', $obj['codigo_inspeccion'])) . 's' . $obj['seguimiento_id'] . '.' . $file->getClientOriginalExtension();
+                $uuid = Str::uuid();
+
+                if ($s->seguimiento_id != 0) {
+                    $fileName = 'sgm_' . $uuid . '.' . $file->getClientOriginalExtension();
                     $file->move(public_path('files/seguim'), $fileName);
 
                     $m = new SeguimientoArchivo;
