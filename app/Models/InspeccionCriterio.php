@@ -17,7 +17,7 @@ class InspeccionCriterio extends Model
     public $timestamps = false;
 
     public function getInspeccionCriterios(Request $request) {
-        $db = \DB::select('select * from sg_insp_criterios where inspeccion_id = :id order by 1', array('id' => $request->get('inspeccion_id')));
+        $db = \DB::select('select * from vw_informe_inspeccion_criterios_general where inspeccion_id = :id order by 1', array('id' => $request->get('inspeccion_id')));
 
         return $db;
     }

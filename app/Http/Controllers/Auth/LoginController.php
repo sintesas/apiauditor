@@ -12,6 +12,8 @@ use App\Models\UsuarioMenu;
 class LoginController extends Controller
 {
     public function login(Request $request) {
+        $opc = 0;
+
         if (Auth::attempt(['email' => $request->get('email'), 'password' => $request->get('password')])) {
             $user = Auth::user();
 
@@ -19,13 +21,20 @@ class LoginController extends Controller
                 $m_menu = new Menu;
                 $m_usuariomenu = new UsuarioMenu;
 
+                if (\DB::select('select * from vw_sg_adm_usuarios_roles_privilegios where usuario_id = :id', array('id' => $user->usuario_id)) != null) {
+                    $opc = 1;
+                }
+                else {
+                    $opc = 2;
+                }
+
                 $data = array();
                 $data['usuario_id'] = $user->usuario_id;
                 $data['usuario'] = $user->usuario;
                 $data['nombre_completo'] = $user->nombre_completo;
                 $data['email'] = strtolower($user->email);
                 $data['es_empresa'] = $user->empresa_id != null ? 1 : 0;
-                $data['menus'] = $m_menu->get_menu_id($m_usuariomenu->getUsuarioMenu($user->usuaro_id));
+                $data['menus'] = $m_menu->get_menu_id($m_usuariomenu->getUsuarioMenu($user->usuario_id, $opc));
 
                 $response = json_encode(array('result' => $data), JSON_NUMERIC_CHECK);
                 $response = json_decode($response);

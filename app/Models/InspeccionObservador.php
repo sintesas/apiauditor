@@ -17,7 +17,7 @@ class InspeccionObservador extends Model
     public $timestamps = false;
 
     public function getInspeccionObservadores(Request $request) {
-        $db = \DB::select('select * from sg_insp_observadores where inspeccion_id = :id order by 1', array('id' => $request->get('inspeccion_id')));
+        $db = \DB::select('select * from vw_informe_inspeccion_observadores where inspeccion_id = :id order by 1', array('id' => $request->get('inspeccion_id')));
 
         return $db;
     }

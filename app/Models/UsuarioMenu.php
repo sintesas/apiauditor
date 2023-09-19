@@ -20,8 +20,8 @@ class UsuarioMenu extends Model
 
     public $timestamps = false;
 
-    public function getUsuarioMenu($user_id) {
-        $db = \DB::select("exec pr_get_sg_adm_usuarios_menu_id ?", array($user_id));
+    public function getUsuarioMenu($user_id, $opc) {
+        $db = \DB::select("exec pr_get_sg_adm_usuarios_menu_id ?,?", array($user_id, $opc));
 
         return $db;
     }
