@@ -17,7 +17,7 @@ class AnotacionCorreccion extends Model
     public $timestamps = false;
 
     public function getAnotacionCorreccion(Request $request) {
-        $db = \DB::select('select * from vw_adm_hallazgos_correcion where hallazgo_id = :id', array('id' => $request->get('hallazgo_id')));
+        $db = \DB::select('select * from vw_adm_hallazgos_correccion where hallazgo_id = :id', array('id' => $request->get('hallazgo_id')));
         
         return $db;
     }

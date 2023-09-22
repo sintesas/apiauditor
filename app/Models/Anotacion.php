@@ -30,7 +30,7 @@ class Anotacion extends Model
             $a->inspeccion_id = $obj['inspeccion_id'];
             $a->codificacion = $obj['codificacion'];
             $a->tipo_hallazgo_id = $obj['tipo_hallazgo_id'];
-            $a->tema_catalogacion_id = $obj['tema_catalogacion_id'];
+            $a->tema_catalogacion_id = $obj['tema_catalogacion_id'] == 0 ? null : $obj['tema_catalogacion_id'];
             $a->fecha = $obj['fecha'];
             $a->criterio_id = $obj['criterio_id'];
             $a->proceso_id = $obj['proceso_id'];
@@ -62,7 +62,7 @@ class Anotacion extends Model
             $a->inspeccion_id = $obj['inspeccion_id'];
             $a->codificacion = $obj['codificacion'];
             $a->tipo_hallazgo_id = $obj['tipo_hallazgo_id'];
-            $a->tema_catalogacion_id = $obj['tema_catalogacion_id'];
+            $a->tema_catalogacion_id = $obj['tema_catalogacion_id'] == 0 ? null : $obj['tema_catalogacion_id'];
             $a->fecha = $obj['fecha'];
             $a->criterio_id = $obj['criterio_id'];
             $a->proceso_id = $obj['proceso_id'];

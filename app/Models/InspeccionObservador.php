@@ -27,6 +27,8 @@ class InspeccionObservador extends Model
             $m = new InspeccionObservador;
             $m->inspeccion_id = $request->get('inspeccion_id');
             $m->usuario_id = $request->get('usuario_id');
+            $m->usuario_creador = $request->get('usuario');
+            $m->fecha_creacion = \DB::raw("GETDATE()");
             $m->save();
 
             return $m;
@@ -35,6 +37,8 @@ class InspeccionObservador extends Model
             $m = InspeccionObservador::find($request->get('observador_id'));
             $m->inspeccion_id = $request->get('inspeccion_id');
             $m->usuario_id = $request->get('usuario_id');
+            $m->usuario_modificador = $request->get('usuario');
+            $m->fecha_modificacion = \DB::raw("GETDATE()");
             $m->save();
 
             return $m;

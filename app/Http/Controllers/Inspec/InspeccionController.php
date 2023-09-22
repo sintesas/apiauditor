@@ -418,6 +418,7 @@ class InspeccionController extends Controller
     }
 
     public function eliminarInspeccionTecnico(Request $request) {
+        \Log::info($request);
         $m = InspeccionTecnico::where('experto_tecnico_id', $request->get('experto_tecnico_id'))->delete();
 
         if ($m) {

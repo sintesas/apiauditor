@@ -239,6 +239,16 @@ class AnotacionController extends Controller
         }
     }
 
+    public function eliminarAnotacionCorreccion(Request $request) {
+        $a = AnotacionCorreccion::find($request->get('correccion_id'));
+        $a->delete();
+
+        $response = json_encode(array('mensaje' => 'Ha eliminado exitosamente.', 'tipo' => 0), JSON_NUMERIC_CHECK);
+        $response = json_decode($response);
+
+        return response()->json($response, 200);
+    }
+
     public function getAnotacionMejoramiento(Request $request) {
         $a = new AnotacionMejoramiento;
         $datos = $a->getAnotacionMejoramiento($request);
@@ -285,6 +295,16 @@ class AnotacionController extends Controller
         }
     }
 
+    public function eliminarAnotacionMejoramiento(Request $request) {
+        $a = AnotacionMejoramiento::find($request->get('mejoramiento_id'));
+        $a->delete();
+
+        $response = json_encode(array('mensaje' => 'Ha eliminado exitosamente.', 'tipo' => 0), JSON_NUMERIC_CHECK);
+        $response = json_decode($response);
+
+        return response()->json($response, 200);
+    }
+
     public function getAnotacionOrden(Request $request) {
         $a = new AnotacionOrden;
         $datos = $a->getAnotacionOrden($request);
@@ -329,6 +349,16 @@ class AnotacionController extends Controller
 
             return response()->json($response, 200);
         }
+    }
+
+    public function eliminarAnotacionOrden(Request $request) {
+        $a = AnotacionOrden::find($request->get('orden_id'));
+        $a->delete();
+
+        $response = json_encode(array('mensaje' => 'Ha eliminado exitosamente.', 'tipo' => 0), JSON_NUMERIC_CHECK);
+        $response = json_decode($response);
+
+        return response()->json($response, 200);
     }
 
     public function getAnotacionCausaRaiz(Request $request) {
@@ -378,10 +408,6 @@ class AnotacionController extends Controller
     }
 
     public function eliminarAnotacionCausaRaiz(Request $request) {
-        // $m = AnotacionActividad::where('hallazgo_causa_raiz_id', $request->get('hallazgo_causa_raiz_id'))->get();
-        // if ($m->count() > 0) {
-        //     $this->eliminarAnotacionActividad($request);
-        // }
         $a = AnotacionCausaRaiz::find($request->get('hallazgo_causa_raiz_id'));
         $a->delete();
 

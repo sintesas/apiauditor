@@ -35,6 +35,7 @@ class Seguimiento extends Model
 
     public function crud_seguimientos(Request $request, $evento) {
         $obj = json_decode($request->modelo, true);
+        \Log::info($obj);
 
         if ($evento == 'C') {
             $s = new Seguimiento;
@@ -42,11 +43,11 @@ class Seguimiento extends Model
             $s->fecha_concepto = $obj['fecha_concepto'];
             $s->concepto_efectividad_id = $obj['concepto_efectividad_id'] == 0 ? null : $obj['concepto_efectividad_id'];
             $s->hallazgo_id = $obj['hallazgo_id'];
-            $s->hallazgo_causa_raiz_id = $obj['hallazgo_causa_raiz_id'];
-            $s->hallazgo_actividad_id = $obj['hallazgo_actividad_id'];
+            $s->hallazgo_causa_raiz_id = $obj['hallazgo_causa_raiz_id'] == 0 ? null : $obj['hallazgo_causa_raiz_id'];
+            $s->hallazgo_actividad_id = $obj['hallazgo_actividad_id'] == 0 ? null : $obj['hallazgo_actividad_id'];
             $s->seguimiento = $obj['seguimiento'];
             $s->fecha_seguimiento = $obj['fecha_seguimiento'];
-            $s->tema_catalogacion_id = $obj['tema_catalogacion_id'];
+            $s->tema_catalogacion_id = $obj['tema_catalogacion_id'] == 0 ? null : $obj['tema_catalogacion_id'];
             $s->responsable_id = $obj['responsable_id'] == 0 ? null : $obj['responsable_id'];
             $s->porcentaje = $obj['porcentaje'];
             $s->usuario_creador = $obj['usuario'];
@@ -80,11 +81,11 @@ class Seguimiento extends Model
             $s->fecha_concepto = $obj['fecha_concepto'];
             $s->concepto_efectividad_id = $obj['concepto_efectividad_id'] == 0 ? null : $obj['concepto_efectividad_id'];
             $s->hallazgo_id = $obj['hallazgo_id'];
-            $s->hallazgo_causa_raiz_id = $obj['hallazgo_causa_raiz_id'];
-            $s->hallazgo_actividad_id = $obj['hallazgo_actividad_id'];
+            $s->hallazgo_causa_raiz_id = $obj['hallazgo_causa_raiz_id'] == 0 ? null : $obj['hallazgo_causa_raiz_id'];
+            $s->hallazgo_actividad_id = $obj['hallazgo_actividad_id'] == 0 ? null : $obj['hallazgo_actividad_id'];
             $s->seguimiento = $obj['seguimiento'];
             $s->fecha_seguimiento = $obj['fecha_seguimiento'];
-            $s->tema_catalogacion_id = $obj['tema_catalogacion_id'];
+            $s->tema_catalogacion_id = $obj['tema_catalogacion_id'] == 0 ? null : $obj['tema_catalogacion_id'];
             $s->responsable_id = $obj['responsable_id'] == 0 ? null : $obj['responsable_id'];
             $s->porcentaje = $obj['porcentaje'];
             $s->usuario_creador = $obj['usuario'];

@@ -29,8 +29,6 @@ class Inspeccion extends Model
             $m->codigo = $request->get('codigo');
             $m->fecha_inicio_inspec = \DB::raw('GETDATE()');
             $m->unidad_id = $request->get('unidad_id');
-            $m->unidad = $request->get('unidad');
-            $m->dependencia = $request->get('dependencia');
             $m->aspecto = $request->get('aspecto');
             $m->responsable_id = $request->get('responsable_id');
             $m->cargo_resp = $request->get('cargo_resp');
@@ -39,7 +37,6 @@ class Inspeccion extends Model
             $m->objetivo = $request->get('objetivo');
             $m->alcance = $request->get('alcance');
             $m->tipo_inspeccion_id = $request->get('tipo_inspeccion_id');
-            // $m->criterio_id = $request->get('criterio_id');
             $m->fecha_inicio = $request->get('fecha_inicio');
             $m->hora_inicio = $request->get('hora_inicio');
             $m->fecha_termino = $request->get('fecha_cierre');
@@ -58,8 +55,6 @@ class Inspeccion extends Model
             $m->codigo = $request->get('codigo');
             $m->fecha_inicio_inspec = $request->get('fecha_inicio_inspec');
             $m->unidad_id = $request->get('unidad_id');
-            $m->unidad = $request->get('unidad');
-            $m->dependencia = $request->get('dependencia');
             $m->aspecto = $request->get('aspecto');
             $m->responsable_id = $request->get('responsable_id');
             $m->cargo_resp = $request->get('cargo_resp');
@@ -68,7 +63,6 @@ class Inspeccion extends Model
             $m->objetivo = $request->get('objetivo');
             $m->alcance = $request->get('alcance');
             $m->tipo_inspeccion_id = $request->get('tipo_inspeccion_id');
-            // $m->criterio_id = $request->get('criterio_id');
             $m->fecha_inicio = $request->get('fecha_inicio');
             $m->hora_inicio = $request->get('hora_inicio');
             $m->fecha_termino = $request->get('fecha_cierre');

@@ -61,7 +61,7 @@ class UserController extends Controller
     }
 
     public function getTipoDocumento() {
-        $datos = TipoDocumento::all();
+        $datos = \DB::select('select * from vw_tipo_documento');
 
         $response = json_encode(array('result' => $datos, 'tipo' => 0), JSON_NUMERIC_CHECK);
         $response = json_decode($response);
@@ -219,8 +219,8 @@ class UserController extends Controller
         try {
             $db = $model->crud_personales($request, 'C');
 
-            if ($db->IdPersonal != 0) {
-                $id = $db->IdPersonal;
+            if ($db->personal_id != 0) {
+                $id = $db->personal_id;
 
                 $response = json_encode(array('mensaje' => 'Fue creado exitosamente.', 'tipo' => 0, 'id' => $id), JSON_NUMERIC_CHECK);
                 $response = json_decode($response);
@@ -252,13 +252,13 @@ class UserController extends Controller
     }
 
     public function crearUsuario(Request $request) {
-        $model = new User;
+        $model = new Usuario;
 
         try {
             $db = $model->crud_usuarios($request, 'C');
 
-            if ($db->id != 0) {
-                $id = $db->id;
+            if ($db->usuario_id != 0) {
+                $id = $db->usuario_id;
 
                 $response = json_encode(array('mensaje' => 'Fue creado exitosamente.', 'tipo' => 0, 'id' => $id), JSON_NUMERIC_CHECK);
                 $response = json_decode($response);

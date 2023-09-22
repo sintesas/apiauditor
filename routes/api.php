@@ -26,8 +26,8 @@ use App\Http\Controllers\Mail\MailController;
 |
 */
 
-Route::post('login', [LoginController::class, 'login']);
-Route::any('logout', [LoginController::class, 'logout']);
+Route::post('login', [LoginController::class, 'login'])->name('login');
+// Route::any('logout', [LoginController::class, 'logout']);
 
 Route::group(['prefix' => 'config'], function() {
     //perfil
@@ -149,12 +149,15 @@ Route::group(['prefix' => 'inspec'], function() {
     Route::post('anotacion/getAnotacionCorreccion', [AnotacionController::class, 'getAnotacionCorreccion']);
     Route::post('anotacion/crearAnotacionCorreccion', [AnotacionController::class, 'crearAnotacionCorreccion']);
     Route::post('anotacion/actualizarAnotacionCorreccion', [AnotacionController::class, 'actualizarAnotacionCorreccion']);
+    Route::post('anotacion/eliminarAnotacionCorreccion', [AnotacionController::class, 'eliminarAnotacionCorreccion']);
     Route::post('anotacion/getAnotacionMejoramiento', [AnotacionController::class, 'getAnotacionMejoramiento']);
     Route::post('anotacion/crearAnotacionMejoramiento', [AnotacionController::class, 'crearAnotacionMejoramiento']);
     Route::post('anotacion/actualizarAnotacionMejoramiento', [AnotacionController::class, 'actualizarAnotacionMejoramiento']);
+    Route::post('anotacion/eliminarAnotacionMejoramiento', [AnotacionController::class, 'eliminarAnotacionMejoramiento']);
     Route::post('anotacion/getAnotacionOrden', [AnotacionController::class, 'getAnotacionOrden']);
     Route::post('anotacion/crearAnotacionOrden', [AnotacionController::class, 'crearAnotacionOrden']);
     Route::post('anotacion/actualizarAnotacionOrden', [AnotacionController::class, 'actualizarAnotacionOrden']);
+    Route::post('anotacion/eliminarAnotacionOrden', [AnotacionController::class, 'eliminarAnotacionOrden']);
     Route::post('anotacion/getAnotacionCausaRaiz', [AnotacionController::class, 'getAnotacionCausaRaiz']);
     Route::post('anotacion/crearAnotacionCausaRaiz', [AnotacionController::class, 'crearAnotacionCausaRaiz']);
     Route::post('anotacion/actualizarAnotacionCausaRaiz', [AnotacionController::class, 'actualizarAnotacionCausaRaiz']);

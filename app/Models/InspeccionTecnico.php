@@ -27,9 +27,9 @@ class InspeccionTecnico extends Model
             $m = new InspeccionTecnico;
             $m->inspeccion_id = $request->get('inspeccion_id');
             $m->proceso_id = $request->get('proceso_id');
-            $m->procesos = $request->get('procesos');
             $m->grado_id = $request->get('grado_id');
-            $m->grado = $request->get('grado');
+            $m->usuario_creador = $request->get('usuario');
+            $m->fecha_creacion = \DB::raw("GETDATE()");
             $m->save();
 
             return $m;
@@ -38,9 +38,9 @@ class InspeccionTecnico extends Model
             $m = InspeccionTecnico::find($request->get('experto_tecnico_id'));
             $m->inspeccion_id = $request->get('inspeccion_id');
             $m->proceso_id = $request->get('proceso_id');
-            $m->procesos = $request->get('procesos');
             $m->grado_id = $request->get('grado_id');
-            $m->grado = $request->get('grado');
+            $m->usuario_modificador = $request->get('usuario');
+            $m->fecha_modificacion = \DB::raw("GETDATE()");
             $m->save();
 
             return $m;

@@ -27,7 +27,8 @@ class InspeccionCriterio extends Model
             $m = new InspeccionCriterio;
             $m->inspeccion_id = $request->get('inspeccion_id');
             $m->criterio_id = $request->get('criterio_id');
-            $m->criterio = $request->get('criterio');
+            $m->usuario_creador = $request->get('usuario');
+            $m->fecha_creacion = \DB::raw("GETDATE()");
             $m->save();
 
             return $m;
@@ -36,7 +37,8 @@ class InspeccionCriterio extends Model
             $m = InspeccionCriterio::find($request->get('insp_criterio_id'));
             $m->inspeccion_id = $request->get('inspeccion_id');
             $m->criterio_id = $request->get('criterio_id');
-            $m->criterio = $request->get('criterio');
+            $m->usuario_modificador = $request->get('usuario');
+            $m->fecha_modificacion = \DB::raw("GETDATE()");
             $m->save();
 
             return $m;

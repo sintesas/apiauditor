@@ -49,8 +49,8 @@ class Usuario extends Authenticatable
             $m = new Usuario;
             $m->usuario = substr(strtolower($request->get('email')), 0, strpos(strtolower($request->get('email')), "@"));
             $m->nombre_completo = $request->get('nombre_completo');
-            $m->personal_id = $request->get('idpersonal');
-            $m->empresa_id = $request->get('idempresa');
+            $m->personal_id = $request->get('personal_id');
+            $m->empresa_id = $request->get('empresa_id');
             $m->email = $request->get('email');
             $m->password = password_hash($request->get('password'), PASSWORD_BCRYPT, $options);
             $m->activo = 1;
@@ -64,8 +64,8 @@ class Usuario extends Authenticatable
             $m = Usuario::find($request->get('usuario_id'));
             $m->usuario = substr(strtolower($request->get('email')), 0, strpos(strtolower($request->get('email')), "@"));
             $m->nombre_completo = $request->get('nombre_completo');
-            $m->personal_id = $request->get('idpersonal');
-            $m->empresa_id = $request->get('idempresa');
+            $m->personal_id = $request->get('personal_id');
+            $m->empresa_id = $request->get('empresa_id');
             $m->email = $request->get('email');
             $m->password = password_hash($request->get('password'), PASSWORD_BCRYPT, $options);
             $m->activo = $request->get('activo') == true ? 1 : 0;

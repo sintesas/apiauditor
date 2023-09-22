@@ -37,7 +37,7 @@ class PlanInspeccion extends Model
             return $m;
         }
         else if ($evento == 'U') {
-            $m = PlanInspeccion::find($request->get('inspeccion_id'));
+            $m = PlanInspeccion::find($request->get('plan_inspeccion_id'));
             $m->inspeccion_id = $request->get('inspeccion_id');
             $m->codigo = $request->get('codigo');
             $m->fecha = \DB::raw('GETDATE()');

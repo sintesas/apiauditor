@@ -26,9 +26,7 @@ class ActividadPlanInspeccion extends Model
         if ($evento == 'C') {
             $m = new ActividadPlanInspeccion;
             $m->plan_inspeccion_id = $request->get('plan_inspeccion_id');
-            $m->criterio_id = null;
             $m->proceso_id = $request->get('proceso_id');
-            $m->lugar = null;
             $m->actividades = $request->get('actividad');
             $m->inspeccionado_id = $request->get('inspeccionado_id');
             $m->inspector_id = $request->get('inspector_id');
@@ -46,9 +44,7 @@ class ActividadPlanInspeccion extends Model
         else if ($evento == 'U') {
             $m = ActividadPlanInspeccion::find($request->get('actividad_plan_id'));
             $m->plan_inspeccion_id = $request->get('plan_inspeccion_id');
-            $m->criterio_id = null;
             $m->proceso_id = $request->get('proceso_id');
-            $m->lugar = null;
             $m->actividades = $request->get('actividad');
             $m->inspeccionado_id = $request->get('inspeccionado_id');
             $m->inspector_id = $request->get('inspector_id');
