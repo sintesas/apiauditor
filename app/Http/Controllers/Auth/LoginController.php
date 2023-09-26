@@ -106,7 +106,7 @@ class LoginController extends Controller
                     return response()->json(array('user' => $response, 'tipo' => 0));
                 }
                 else {
-                    return response()->json(array('mensaje' => "El usuario '" . $user->usuario . "' no se encuentra activo.", 'tipo' => -1));
+                    return response()->json(array('mensaje' => "El usuario '" . $user->usuario . "' no se encuentra activo.", 'tipo' => -1, 'codigo' => 2));
                 }
             }
         }
