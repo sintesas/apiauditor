@@ -119,6 +119,7 @@ class LoginController extends Controller
 
     public function logout() {
         // Auth::logout();
+        
         $url = 'https://auditorigefa.fac.mil.co';
 
         // recover sessionIndex and nameId from session
