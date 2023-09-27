@@ -16,7 +16,7 @@ class Utils
 
     public function getFullNameWithGrade($fullname) {
         if (strpos($fullname, '.') == true) {
-            $t = substr($fullname, 0, 3) . ' ' . ucwords(strtolower(substr($fullname, strpos($fullname, '.') + 2)));
+            $t = substr($fullname, 0, strpos($fullname, '.') + 1) . ' ' . ucwords(strtolower(substr($fullname, strpos($fullname, '.') + 2)));
         }
         else {
             $t = ucwords(strtolower($fullname));
