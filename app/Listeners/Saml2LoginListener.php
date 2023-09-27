@@ -6,7 +6,9 @@ use Aacotroneo\Saml2\Events\Saml2LoginEvent;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
+use App\Models\Personal;
 use App\Models\Usuario;
+use App\Models\Utils;
 
 class Saml2LoginListener
 {
@@ -39,13 +41,35 @@ class Saml2LoginListener
 
         // Si el usuario no existe, crea nuevo usuario
         if ($user == null) {
-            $user = new Usuario;
-            $user->usuario = $userData['username'];
-            $user->nombre_completo = $userData['fullname'];
-            $user->email = $userData['email'] == null ? null : strtolower($userData['email']);
-            $user->usuario_creador = 'UserDB_SECAD';
-            $user->fecha_creacion = \DB::raw('GETDATE()');
-            $user->save();
+            $u = new Utils;
+            $t = $u->getFullName($userData['fullname']);
+            if (count($t) == 3) {
+                $nombres = $t[0];
+                $apellidos = $t[1] . ' ' . $t[2];
+            }
+            else if (count($t) == 4) {
+                $nombres = $t[0] . ' ' . $t[1];
+                $apellidos = $t[2] . ' ' . $t[3];
+            }
+            $persona = new Personal;
+            $persona->nombres = $nombres;
+            $persona->apellidos = $apellidos;            
+            $persona->email = $userData['email'] == null ? null : strtolower($userData['email']);
+            $persona->activo = 1;
+            $persona->usuario_creador = 'UserDB_SECAD';
+            $persona->fecha_creacion = \DB::raw('GETDATE()');
+            $persona->save();
+
+            if ($persona->personal_id != 0) {
+                $user = new Usuario;
+                $user->usuario = $userData['username'];
+                $user->personal_id = $persona->personal_id;
+                $user->nombre_completo = $u->getFullNameWithGrade($userData['fullname']);
+                $user->email = $userData['email'] == null ? null : strtolower($userData['email']);
+                $user->usuario_creador = 'UserDB_SECAD';
+                $user->fecha_creacion = \DB::raw('GETDATE()');
+                $user->save();
+            }
         }
 
         session(['nameId' => $userData['nameId']]);
@@ -53,5 +77,5 @@ class Saml2LoginListener
 
         // login usuario
         \Auth::login($user);
-    }
+    }    
 }

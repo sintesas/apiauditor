@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-use Carbon\Carbon;
 
 use App\Models\Usuario;
 
@@ -28,7 +27,7 @@ class Personal extends Model
     public function crud_personales(Request $request, $evento) {
         if ($evento == 'C') {
             $persona = new Personal;
-            $persona->tipo_documento_id = $request->get('tipo_documento_id');
+            $persona->tipo_documento_id = $request->get('tipo_documento_id') == 0 ? null : $request->get('tipo_documento_id');
             $persona->num_identificacion = $request->get('num_identificacion');
             $persona->nombres = $request->get('nombres');
             $persona->apellidos = $request->get('apellidos');            
