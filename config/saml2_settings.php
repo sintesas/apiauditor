@@ -42,7 +42,8 @@ return $settings = array(
     /**
      * Where to redirect after logout
      */
-    'logoutRoute' => 'https://auditorigefa.fac.mil.co',
+    // 'logoutRoute' => 'https://auditorigefa.fac.mil.co',
+    'logoutRoute' => 'http://localhost:4200',
 
     /**
      * Where to redirect after login if no other option was provided

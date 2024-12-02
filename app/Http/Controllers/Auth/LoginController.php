@@ -52,7 +52,8 @@ class LoginController extends Controller
     // }
 
     public function saml() {
-        $url = 'https://auditorigefa.fac.mil.co/';
+        $url = 'http://localhost:4200';
+        // $url = 'https://auditorigefa.fac.mil.co';
 
         if (\Auth::guest()) {
             try {
@@ -120,7 +121,8 @@ class LoginController extends Controller
     public function logout() {
         // Auth::logout();
         
-        $url = 'https://auditorigefa.fac.mil.co';
+        $url = 'http://localhost:4200';
+        // $url = 'https://auditorigefa.fac.mil.co';
 
         // recover sessionIndex and nameId from session
         $nameId = session('nameId');
